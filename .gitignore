@@ -54,3 +54,4 @@ build/
 # images/*.jpeg
 # images/*.png
 # !images/placeholder.svg
+.claude/
