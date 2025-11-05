@@ -48,15 +48,9 @@
         "openingHoursSpecification": [
             {
                 "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-                "opens": "09:00",
+                "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                "opens": "08:00",
                 "closes": "18:00"
-            },
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": "Saturday",
-                "opens": "09:00",
-                "closes": "14:00"
             }
         ]
     }
@@ -539,9 +533,8 @@
                             <div class="info-content">
                                 <h3 class="info-title">Horário de Funcionamento</h3>
                                 <p class="info-text">
-                                    Segunda a Sexta: 09:00 - 18:00<br>
-                                    Sábado: 09:00 - 14:00<br>
-                                    Domingo: Fechado
+                                    Terça a Sábado: 08:00 - 18:00<br>
+                                    Domingo, Segunda e Feriados: Fechado
                                 </p>
                             </div>
                         </div>
@@ -563,12 +556,19 @@
 
                             <div class="form-group">
                                 <label for="name" class="form-label">Nome Completo</label>
-                                <input type="text" id="name" name="name" class="form-input" placeholder="Seu nome" required>
+                                <input type="text" id="name" name="name" class="form-input" placeholder="Seu nome completo"
+                                       pattern="[A-Za-zÀ-ÿ\s']{3,50}"
+                                       title="Nome deve conter apenas letras e ter entre 3 e 50 caracteres"
+                                       minlength="3" maxlength="50" required>
+                                <span class="field-error"></span>
                             </div>
 
                             <div class="form-group">
-                                <label for="phone" class="form-label">Telefone</label>
-                                <input type="tel" id="phone" name="phone" class="form-input" placeholder="(71) 99999-9999" required>
+                                <label for="phone" class="form-label">Telefone / WhatsApp</label>
+                                <input type="tel" id="phone" name="phone" class="form-input" placeholder="(71) 99999-9999"
+                                       pattern="\(?\d{2}\)?\s?\d{4,5}-?\d{4}"
+                                       title="Formato: (XX) XXXXX-XXXX ou (XX) XXXX-XXXX" required>
+                                <span class="field-error"></span>
                             </div>
 
                             <div class="form-group">
@@ -591,11 +591,15 @@
                                     <option value="permanente">Permanente</option>
                                     <option value="outro">Outro</option>
                                 </select>
+                                <span class="field-error"></span>
                             </div>
 
                             <div class="form-group">
                                 <label for="message" class="form-label">Mensagem</label>
-                                <textarea id="message" name="message" class="form-input form-textarea" placeholder="Conte-nos mais sobre o que você precisa..." rows="5" required></textarea>
+                                <textarea id="message" name="message" class="form-input form-textarea"
+                                          placeholder="Conte-nos mais sobre o que você precisa..."
+                                          rows="5" minlength="10" maxlength="500" required></textarea>
+                                <span class="field-error"></span>
                             </div>
 
                             <button type="submit" class="btn btn-primary btn-submit">
@@ -690,9 +694,8 @@
                 <div class="footer-column">
                     <h4 class="footer-heading">Horário</h4>
                     <ul class="footer-schedule">
-                        <li>Segunda a Sexta: 09:00 - 18:00</li>
-                        <li>Sábado: 09:00 - 14:00</li>
-                        <li>Domingo: Fechado</li>
+                        <li>Terça a Sábado: 08:00 - 18:00</li>
+                        <li>Domingo, Segunda e Feriados: Fechado</li>
                     </ul>
                 </div>
             </div>

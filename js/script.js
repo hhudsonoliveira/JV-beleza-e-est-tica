@@ -169,48 +169,208 @@ function initFormValidation() {
 
     if (!contactForm) return;
 
+    // Get form fields
+    const nameInput = document.getElementById('name');
+    const phoneInput = document.getElementById('phone');
+    const serviceInput = document.getElementById('service');
+    const messageInput = document.getElementById('message');
+
+    // REGEX PATTERNS
+    // Regex para nome: apenas letras (incluindo acentuação), espaços e apóstrofo, entre 3 e 50 caracteres
+    const nameRegex = /^[A-Za-zÀ-ÿ\s']{3,50}$/;
+
+    // Regex para telefone brasileiro: aceita formatos (XX) XXXXX-XXXX ou (XX) XXXX-XXXX
+    // Também aceita variações com/sem parênteses, espaços ou hífen
+    const phoneRegex = /^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/;
+
+    // Regex para telefone (apenas dígitos): 10 ou 11 dígitos (DDD + número)
+    const phoneDigitsRegex = /^\d{10,11}$/;
+
+    // Add real-time validation on blur (when user leaves field)
+    nameInput.addEventListener('blur', function() {
+        validateField(nameInput, nameRegex, 'Nome deve conter apenas letras e ter entre 3 e 50 caracteres');
+    });
+
+    phoneInput.addEventListener('blur', function() {
+        const phoneValue = phoneInput.value.replace(/\D/g, ''); // Remove non-digits
+        if (!phoneDigitsRegex.test(phoneValue)) {
+            showFieldError(phoneInput, 'Telefone deve conter DDD e 8 ou 9 dígitos (ex: (71) 99999-9999)');
+        } else {
+            clearFieldError(phoneInput);
+        }
+    });
+
+    messageInput.addEventListener('blur', function() {
+        if (messageInput.value.trim().length < 10) {
+            showFieldError(messageInput, 'Mensagem deve ter pelo menos 10 caracteres');
+        } else {
+            clearFieldError(messageInput);
+        }
+    });
+
+    // Form submit validation
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
 
-        // Get form fields
-        const name = document.getElementById('name').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const service = document.getElementById('service').value;
-        const message = document.getElementById('message').value.trim();
+        // Get form values
+        const name = nameInput.value.trim();
+        const phone = phoneInput.value.trim();
+        const service = serviceInput.value;
+        const message = messageInput.value.trim();
         const formMessage = document.getElementById('form-message');
 
-        // Validation
+        // Clear previous errors
+        clearAllFieldErrors();
+
+        // Validation array
+        let isValid = true;
         let errors = [];
 
-        if (name === '' || name.length < 3) {
-            errors.push('Por favor, insira seu nome completo.');
+        // Validate name with regex
+        if (name === '') {
+            showFieldError(nameInput, 'Por favor, insira seu nome completo');
+            errors.push('Nome é obrigatório');
+            isValid = false;
+        } else if (name.length < 3) {
+            showFieldError(nameInput, 'Nome deve ter pelo menos 3 caracteres');
+            errors.push('Nome muito curto');
+            isValid = false;
+        } else if (name.length > 50) {
+            showFieldError(nameInput, 'Nome deve ter no máximo 50 caracteres');
+            errors.push('Nome muito longo');
+            isValid = false;
+        } else if (!nameRegex.test(name)) {
+            showFieldError(nameInput, 'Nome deve conter apenas letras e espaços');
+            errors.push('Nome contém caracteres inválidos');
+            isValid = false;
         }
 
-        if (phone === '' || phone.length < 14) {
-            errors.push('Por favor, insira um telefone válido.');
+        // Validate phone with regex
+        const phoneDigits = phone.replace(/\D/g, ''); // Remove all non-digits for validation
+
+        if (phone === '') {
+            showFieldError(phoneInput, 'Por favor, insira seu telefone');
+            errors.push('Telefone é obrigatório');
+            isValid = false;
+        } else if (!phoneDigitsRegex.test(phoneDigits)) {
+            showFieldError(phoneInput, 'Telefone deve ter 10 ou 11 dígitos incluindo DDD (ex: (71) 99999-9999)');
+            errors.push('Telefone inválido');
+            isValid = false;
+        } else if (!phoneRegex.test(phone)) {
+            showFieldError(phoneInput, 'Formato de telefone inválido. Use: (XX) XXXXX-XXXX');
+            errors.push('Formato de telefone incorreto');
+            isValid = false;
         }
 
+        // Validate service selection
         if (service === '') {
-            errors.push('Por favor, selecione um serviço.');
+            showFieldError(serviceInput, 'Por favor, selecione um serviço');
+            errors.push('Serviço não selecionado');
+            isValid = false;
         }
 
-        if (message === '' || message.length < 10) {
-            errors.push('Por favor, escreva uma mensagem com pelo menos 10 caracteres.');
+        // Validate message
+        if (message === '') {
+            showFieldError(messageInput, 'Por favor, escreva uma mensagem');
+            errors.push('Mensagem é obrigatória');
+            isValid = false;
+        } else if (message.length < 10) {
+            showFieldError(messageInput, 'Mensagem deve ter pelo menos 10 caracteres');
+            errors.push('Mensagem muito curta');
+            isValid = false;
+        } else if (message.length > 500) {
+            showFieldError(messageInput, 'Mensagem deve ter no máximo 500 caracteres');
+            errors.push('Mensagem muito longa');
+            isValid = false;
         }
 
         // Show errors or success
-        if (errors.length > 0) {
-            showFormMessage(formMessage, errors.join(' '), 'error');
+        if (!isValid) {
+            showFormMessage(formMessage, 'Por favor, corrija os erros no formulário antes de enviar.', 'error');
+
+            // Scroll to first error
+            const firstError = contactForm.querySelector('.form-group.error');
+            if (firstError) {
+                firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
         } else {
+            // All validations passed
             // Send to WhatsApp
             sendToWhatsApp(name, phone, service, message);
 
             // Show success message
             showFormMessage(formMessage, 'Redirecionando para o WhatsApp...', 'success');
 
-            // Reset form
-            contactForm.reset();
+            // Reset form after delay
+            setTimeout(() => {
+                contactForm.reset();
+                clearAllFieldErrors();
+            }, 1500);
         }
+    });
+}
+
+// Validate individual field with regex
+function validateField(input, regex, errorMessage) {
+    const value = input.value.trim();
+
+    if (value === '' || !regex.test(value)) {
+        showFieldError(input, errorMessage);
+        return false;
+    } else {
+        clearFieldError(input);
+        return true;
+    }
+}
+
+// Show error message for a specific field
+function showFieldError(input, message) {
+    const formGroup = input.closest('.form-group');
+
+    // Remove existing error message if any
+    const existingError = formGroup.querySelector('.field-error');
+    if (existingError) {
+        existingError.remove();
+    }
+
+    // Add error class
+    formGroup.classList.add('error');
+    input.classList.add('error');
+
+    // Create and append error message
+    const errorElement = document.createElement('span');
+    errorElement.className = 'field-error';
+    errorElement.textContent = message;
+    formGroup.appendChild(errorElement);
+}
+
+// Clear error for a specific field
+function clearFieldError(input) {
+    const formGroup = input.closest('.form-group');
+    formGroup.classList.remove('error');
+    input.classList.remove('error');
+
+    const errorElement = formGroup.querySelector('.field-error');
+    if (errorElement) {
+        errorElement.remove();
+    }
+}
+
+// Clear all field errors
+function clearAllFieldErrors() {
+    const errorFields = document.querySelectorAll('.form-group.error');
+    errorFields.forEach(field => {
+        field.classList.remove('error');
+    });
+
+    const errorInputs = document.querySelectorAll('.form-input.error');
+    errorInputs.forEach(input => {
+        input.classList.remove('error');
+    });
+
+    const errorMessages = document.querySelectorAll('.field-error');
+    errorMessages.forEach(msg => {
+        msg.remove();
     });
 }
 
