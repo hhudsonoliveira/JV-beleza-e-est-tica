@@ -602,12 +602,78 @@
                                 <span class="field-error"></span>
                             </div>
 
+                            <!-- TERMOS DE USO JV BELEZA -->
+                            <div class="form-group terms-group">
+                                <label class="terms-checkbox">
+                                    <input type="checkbox" id="terms" name="terms" required>
+                                    <span class="terms-text">
+                                        Li e aceito os <a href="#" id="open-terms-modal" class="terms-link">Termos de Uso e Política de Privacidade</a>
+                                    </span>
+                                </label>
+                                <span class="field-error"></span>
+                            </div>
+
                             <button type="submit" class="btn btn-primary btn-submit">
                                 Enviar Mensagem
                             </button>
 
                             <div class="form-message" id="form-message"></div>
                         </form>
+                    </div>
+
+                    <!-- TERMOS DE USO JV BELEZA - MODAL -->
+                    <div id="terms-modal" class="terms-modal">
+                        <div class="terms-modal-content">
+                            <span class="terms-modal-close">&times;</span>
+                            <h3 class="terms-modal-title">Termos de Uso e Política de Privacidade – JV Beleza & Estética</h3>
+                            <div class="terms-modal-body">
+                                <h4>Coleta de Dados</h4>
+                                <p>Ao preencher o formulário de contato, coletamos as seguintes informações:</p>
+                                <ul>
+                                    <li>Nome completo</li>
+                                    <li>Endereço de e-mail</li>
+                                    <li>Número de telefone</li>
+                                    <li>Mensagem enviada</li>
+                                </ul>
+                                <p>Estes dados são coletados exclusivamente para fins de comunicação e resposta à sua solicitação.</p>
+
+                                <h4>Uso das Informações</h4>
+                                <p>As informações fornecidas serão utilizadas para:</p>
+                                <ul>
+                                    <li>Responder à sua solicitação de contato</li>
+                                    <li>Fornecer informações sobre nossos serviços</li>
+                                    <li>Enviar propostas comerciais, quando solicitado</li>
+                                    <li>Manter histórico de comunicação para melhor atendimento</li>
+                                </ul>
+                                <p><strong>Importante:</strong> Seus dados NÃO serão compartilhados com terceiros sem seu consentimento explícito.</p>
+
+                                <h4>Segurança dos Dados</h4>
+                                <p>A JV Beleza & Estética se compromete a proteger suas informações pessoais.</p>
+                                <ul>
+                                    <li>Implementamos medidas de segurança técnicas e organizacionais para proteger seus dados contra acesso não autorizado, perda ou alteração.</li>
+                                    <li>Utilizamos serviços de terceiros confiáveis (como o EmailJS) para processar o envio de mensagens, que seguem padrões de segurança reconhecidos.</li>
+                                </ul>
+
+                                <h4>Direitos do Usuário</h4>
+                                <p>De acordo com a LGPD (Lei Geral de Proteção de Dados), você tem direito a:</p>
+                                <ul>
+                                    <li>Solicitar acesso aos seus dados pessoais</li>
+                                    <li>Solicitar correção de dados incompletos ou desatualizados</li>
+                                    <li>Solicitar exclusão dos seus dados</li>
+                                    <li>Revogar seu consentimento a qualquer momento</li>
+                                </ul>
+                                <p>Para exercer esses direitos, entre em contato através do e-mail: <strong>contato@jvsaudebelezaestetica.com</strong></p>
+
+                                <h4>Consentimento</h4>
+                                <p>Ao marcar a caixa e enviar o formulário, você declara que:</p>
+                                <ul>
+                                    <li>Leu e compreendeu estes termos</li>
+                                    <li>Concorda com a coleta e uso das suas informações conforme descrito</li>
+                                    <li>Está ciente dos seus direitos em relação aos seus dados pessoais</li>
+                                    <li>Autoriza o contato da JV Beleza & Estética para retorno da sua solicitação</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -724,6 +790,15 @@
     </button>
 
     <!-- JavaScript -->
+    <!-- TERMOS DE USO E EMAILJS - EmailJS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        // Initialize EmailJS
+        (function(){
+            emailjs.init("15CqBHYUJI9PzZ7eF");
+        })();
+    </script>
+
     <script src="js/script.js"></script>
 
 </body>

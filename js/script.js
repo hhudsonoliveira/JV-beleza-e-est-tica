@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initIntersectionObserver();
     initFormValidation();
     initPhoneMask();
+    initTermsModal(); // TERMOS DE USO E EMAILJS
 });
 
 // ==================== MOBILE MENU ====================
@@ -174,6 +175,7 @@ function initFormValidation() {
     const phoneInput = document.getElementById('phone');
     const serviceInput = document.getElementById('service');
     const messageInput = document.getElementById('message');
+    const termsInput = document.getElementById('terms'); // TERMOS DE USO E EMAILJS
 
     // REGEX PATTERNS
     // Regex para nome: apenas letras (incluindo acentuação), espaços e apóstrofo, entre 3 e 50 caracteres
@@ -284,6 +286,13 @@ function initFormValidation() {
             isValid = false;
         }
 
+        // TERMOS DE USO E EMAILJS - Validate terms checkbox
+        if (!termsInput.checked) {
+            showFieldError(termsInput, 'Você precisa aceitar os Termos de Uso para enviar o formulário');
+            errors.push('Termos não aceitos');
+            isValid = false;
+        }
+
         // Show errors or success
         if (!isValid) {
             showFormMessage(formMessage, 'Por favor, corrija os erros no formulário antes de enviar.', 'error');
@@ -295,17 +304,39 @@ function initFormValidation() {
             }
         } else {
             // All validations passed
-            // Send to WhatsApp
-            sendToWhatsApp(name, phone, service, message);
+            // TERMOS DE USO E EMAILJS - Send form via EmailJS
+            showFormMessage(formMessage, 'Enviando mensagem...', 'success');
 
-            // Show success message
-            showFormMessage(formMessage, 'Redirecionando para o WhatsApp...', 'success');
+            // Send email via EmailJS
+            emailjs.sendForm('service_88psr38', 'template_mx5bjs8', contactForm)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
 
-            // Reset form after delay
-            setTimeout(() => {
-                contactForm.reset();
-                clearAllFieldErrors();
-            }, 1500);
+                    // Show success message
+                    showFormMessage(formMessage, 'Mensagem enviada com sucesso! Entraremos em contato em breve.', 'success');
+
+                    // Reset form after delay
+                    setTimeout(() => {
+                        contactForm.reset();
+                        clearAllFieldErrors();
+                    }, 2000);
+
+                    // Also send to WhatsApp after successful email
+                    setTimeout(() => {
+                        sendToWhatsApp(name, phone, service, message);
+                    }, 1000);
+
+                }, function(error) {
+                    console.error('FAILED...', error);
+
+                    // Show error message
+                    showFormMessage(formMessage, 'Erro ao enviar mensagem. Por favor, tente novamente ou entre em contato via WhatsApp.', 'error');
+
+                    // Fallback to WhatsApp
+                    setTimeout(() => {
+                        sendToWhatsApp(name, phone, service, message);
+                    }, 2000);
+                });
         }
     });
 }
@@ -576,3 +607,41 @@ window.JVBeauty = {
 
     showFormMessage: showFormMessage
 };
+
+// ==================== TERMOS DE USO E EMAILJS ====================
+function initTermsModal() {
+    const modal = document.getElementById('terms-modal');
+    const openLink = document.getElementById('open-terms-modal');
+    const closeBtn = document.querySelector('.terms-modal-close');
+
+    if (!modal || !openLink || !closeBtn) return;
+
+    // Open modal
+    openLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    });
+
+    // Close modal on X button
+    closeBtn.addEventListener('click', function() {
+        modal.classList.remove('show');
+        document.body.style.overflow = ''; // Restore scrolling
+    });
+
+    // Close modal when clicking outside
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Close modal on ESC key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('show')) {
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+    });
+}
