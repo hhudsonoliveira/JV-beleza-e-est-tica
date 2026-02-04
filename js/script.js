@@ -4,15 +4,116 @@
 
 // ==================== INITIALIZATION ====================
 document.addEventListener('DOMContentLoaded', function() {
+    initPreloader();
     initMobileMenu();
     initSmoothScroll();
     initScrollEffects();
     initScrollToTop();
     initIntersectionObserver();
+    initRevealAnimations();
+    initParticles();
+    initParallax();
     initFormValidation();
     initPhoneMask();
     initTermsModal(); // TERMOS DE USO E EMAILJS
 });
+
+// ==================== PRELOADER ====================
+function initPreloader() {
+    const preloader = document.getElementById('preloader');
+
+    if (!preloader) return;
+
+    // Hide preloader after page loads
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            preloader.classList.add('hidden');
+            document.body.style.overflow = ''; // Allow scrolling
+        }, 1500);
+    });
+
+    // Prevent scrolling while preloader is visible
+    document.body.style.overflow = 'hidden';
+}
+
+// ==================== PARTICLES ====================
+function initParticles() {
+    const particlesContainer = document.getElementById('particles');
+
+    if (!particlesContainer) return;
+
+    const particleCount = 30;
+
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+
+        // Random position
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+
+        // Random size
+        const size = Math.random() * 6 + 2;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+
+        // Random animation delay and duration
+        particle.style.animationDelay = Math.random() * 10 + 's';
+        particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+
+        // Random opacity
+        particle.style.opacity = Math.random() * 0.5 + 0.3;
+
+        particlesContainer.appendChild(particle);
+    }
+}
+
+// ==================== PARALLAX EFFECT ====================
+function initParallax() {
+    const hero = document.querySelector('.hero');
+
+    if (!hero || window.innerWidth <= 768) return;
+
+    window.addEventListener('scroll', function() {
+        const scrolled = window.scrollY;
+        const rate = scrolled * 0.3;
+
+        // Apply parallax effect to hero background
+        hero.style.backgroundPositionY = rate + 'px';
+    });
+}
+
+// ==================== REVEAL ANIMATIONS ====================
+function initRevealAnimations() {
+    const revealElements = document.querySelectorAll('.reveal, .fade-in');
+
+    if (!('IntersectionObserver' in window)) {
+        revealElements.forEach(el => {
+            el.classList.add('active');
+            el.classList.add('visible');
+        });
+        return;
+    }
+
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                // Add staggered delay for multiple elements
+                setTimeout(() => {
+                    entry.target.classList.add('active');
+                    entry.target.classList.add('visible');
+                }, index * 100);
+
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+}
 
 // ==================== MOBILE MENU ====================
 function initMobileMenu() {
