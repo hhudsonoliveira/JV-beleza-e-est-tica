@@ -5,7 +5,7 @@
 /* ==================== GALLERY HERO ==================== */
 .gallery-hero {
     padding: 8rem 0 4rem;
-    background: linear-gradient(135deg, var(--primary-black) 0%, var(--bg-dark) 100%);
+    background: linear-gradient(135deg, var(--primary-brown) 0%, var(--bg-dark) 100%);
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -22,14 +22,15 @@
         45deg,
         transparent,
         transparent 10px,
-        rgba(212, 165, 116, 0.03) 10px,
-        rgba(212, 165, 116, 0.03) 20px
+        rgba(201, 162, 75, 0.04) 10px,
+        rgba(201, 162, 75, 0.04) 20px
     );
     pointer-events: none;
 }
 
 .gallery-hero-title {
     font-family: var(--font-heading);
+    font-style: italic;
     font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 700;
     color: var(--text-white);
@@ -40,7 +41,7 @@
 
 .gallery-hero-subtitle {
     font-size: clamp(1rem, 2vw, 1.25rem);
-    color: var(--primary-gold);
+    color: var(--accent-yellow);
     max-width: 600px;
     margin: 0 auto;
     position: relative;
@@ -122,8 +123,8 @@
     bottom: 0;
     background: linear-gradient(
         135deg,
-        rgba(10, 10, 10, 0.7) 0%,
-        rgba(92, 58, 30, 0.8) 100%
+        rgba(30, 31, 25, 0.75) 0%,
+        rgba(63, 91, 71, 0.8) 100%
     );
     display: flex;
     align-items: center;
@@ -153,7 +154,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.95);
+    background-color: rgba(30, 31, 25, 0.95);
     z-index: 10000;
     display: flex;
     align-items: center;
@@ -199,7 +200,7 @@
     right: 2rem;
     width: 50px;
     height: 50px;
-    background-color: rgba(212, 165, 116, 0.2);
+    background-color: rgba(169, 129, 46, 0.2);
     border: 2px solid var(--primary-gold);
     border-radius: 50%;
     color: var(--text-white);
@@ -224,7 +225,7 @@
     transform: translateY(-50%);
     width: 60px;
     height: 60px;
-    background-color: rgba(212, 165, 116, 0.2);
+    background-color: rgba(169, 129, 46, 0.2);
     border: 2px solid var(--primary-gold);
     border-radius: 50%;
     color: var(--text-white);
@@ -256,7 +257,7 @@
     bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgba(212, 165, 116, 0.2);
+    background-color: rgba(169, 129, 46, 0.2);
     border: 2px solid var(--primary-gold);
     color: var(--text-white);
     padding: 0.75rem 1.5rem;
@@ -325,7 +326,7 @@
 
 /* ==================== CTA SECTION ==================== */
 .section-cta {
-    background: linear-gradient(135deg, var(--primary-black) 0%, var(--bg-dark) 100%);
+    background: linear-gradient(135deg, var(--primary-brown) 0%, var(--bg-dark) 100%);
     padding: var(--spacing-xxl) 0;
     position: relative;
     overflow: hidden;
@@ -342,8 +343,8 @@
         45deg,
         transparent,
         transparent 10px,
-        rgba(212, 165, 116, 0.03) 10px,
-        rgba(212, 165, 116, 0.03) 20px
+        rgba(201, 162, 75, 0.04) 10px,
+        rgba(201, 162, 75, 0.04) 20px
     );
     pointer-events: none;
 }
@@ -358,6 +359,7 @@
 
 .cta-title {
     font-family: var(--font-heading);
+    font-style: italic;
     font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 700;
     color: var(--text-white);
@@ -366,7 +368,7 @@
 
 .cta-subtitle {
     font-size: clamp(1rem, 2vw, 1.25rem);
-    color: var(--primary-gold);
+    color: var(--accent-yellow);
     margin-bottom: var(--spacing-lg);
 }
 

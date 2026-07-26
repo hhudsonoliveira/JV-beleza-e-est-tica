@@ -383,5 +383,5 @@ window.GalleryLightbox = {
 };
 
 // ==================== CONSOLE MESSAGE ====================
-console.log('%c📸 Galeria JV Beleza & Estética', 'color: #d4a574; font-size: 16px; font-weight: bold;');
-console.log('%cLightbox com navegação completa ativa', 'color: #5c3a1e; font-size: 12px;');
+console.log('%c📸 Galeria JV Beleza & Estética', 'color: #c9a24b; font-size: 16px; font-weight: bold;');
+console.log('%cLightbox com navegação completa ativa', 'color: #3f5b47; font-size: 12px;');

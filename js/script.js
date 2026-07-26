@@ -8,15 +8,26 @@ document.addEventListener('DOMContentLoaded', function() {
     initMobileMenu();
     initSmoothScroll();
     initScrollEffects();
-    initScrollToTop();
     initIntersectionObserver();
     initRevealAnimations();
-    initParticles();
-    initParallax();
-    initFormValidation();
-    initPhoneMask();
-    initTermsModal(); // TERMOS DE USO E EMAILJS
+    initGalleryPreview();
+    initTermsModal();
 });
+
+// ==================== GALLERY PREVIEW (HOMEPAGE) ====================
+function initGalleryPreview() {
+    const items = document.querySelectorAll('.gallery-preview-item video');
+
+    items.forEach(video => {
+        const item = video.closest('.gallery-preview-item');
+
+        item.addEventListener('mouseenter', () => video.play());
+        item.addEventListener('mouseleave', () => {
+            video.pause();
+            video.currentTime = 0;
+        });
+    });
+}
 
 // ==================== PRELOADER ====================
 function initPreloader() {
@@ -29,63 +40,16 @@ function initPreloader() {
         setTimeout(function() {
             preloader.classList.add('hidden');
             document.body.style.overflow = ''; // Allow scrolling
-        }, 1500);
+        }, 1900);
     });
 
     // Prevent scrolling while preloader is visible
     document.body.style.overflow = 'hidden';
 }
 
-// ==================== PARTICLES ====================
-function initParticles() {
-    const particlesContainer = document.getElementById('particles');
-
-    if (!particlesContainer) return;
-
-    const particleCount = 30;
-
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-
-        // Random position
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.top = Math.random() * 100 + '%';
-
-        // Random size
-        const size = Math.random() * 6 + 2;
-        particle.style.width = size + 'px';
-        particle.style.height = size + 'px';
-
-        // Random animation delay and duration
-        particle.style.animationDelay = Math.random() * 10 + 's';
-        particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
-
-        // Random opacity
-        particle.style.opacity = Math.random() * 0.5 + 0.3;
-
-        particlesContainer.appendChild(particle);
-    }
-}
-
-// ==================== PARALLAX EFFECT ====================
-function initParallax() {
-    const hero = document.querySelector('.hero');
-
-    if (!hero || window.innerWidth <= 768) return;
-
-    window.addEventListener('scroll', function() {
-        const scrolled = window.scrollY;
-        const rate = scrolled * 0.3;
-
-        // Apply parallax effect to hero background
-        hero.style.backgroundPositionY = rate + 'px';
-    });
-}
-
 // ==================== REVEAL ANIMATIONS ====================
 function initRevealAnimations() {
-    const revealElements = document.querySelectorAll('.reveal, .fade-in');
+    const revealElements = document.querySelectorAll('.reveal, .fade-in, .reveal-left, .reveal-right, .reveal-scale');
 
     if (!('IntersectionObserver' in window)) {
         revealElements.forEach(el => {
@@ -206,30 +170,6 @@ function initScrollEffects() {
     });
 }
 
-// ==================== SCROLL TO TOP BUTTON ====================
-function initScrollToTop() {
-    const scrollTopBtn = document.getElementById('scroll-top');
-
-    if (!scrollTopBtn) return;
-
-    // Show/hide scroll to top button
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 500) {
-            scrollTopBtn.classList.add('show');
-        } else {
-            scrollTopBtn.classList.remove('show');
-        }
-    });
-
-    // Scroll to top when clicked
-    scrollTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-}
-
 // ==================== INTERSECTION OBSERVER (FADE IN ANIMATIONS) ====================
 function initIntersectionObserver() {
     const fadeElements = document.querySelectorAll('.fade-in');
@@ -262,314 +202,6 @@ function initIntersectionObserver() {
 
     fadeElements.forEach(element => {
         observer.observe(element);
-    });
-}
-
-// ==================== FORM VALIDATION ====================
-function initFormValidation() {
-    const contactForm = document.getElementById('contact-form');
-
-    if (!contactForm) return;
-
-    // Get form fields
-    const nameInput = document.getElementById('name');
-    const phoneInput = document.getElementById('phone');
-    const serviceInput = document.getElementById('service');
-    const messageInput = document.getElementById('message');
-    const termsInput = document.getElementById('terms'); // TERMOS DE USO E EMAILJS
-
-    // REGEX PATTERNS
-    // Regex para nome: apenas letras (incluindo acentuação), espaços e apóstrofo, entre 3 e 50 caracteres
-    const nameRegex = /^[A-Za-zÀ-ÿ\s']{3,50}$/;
-
-    // Regex para telefone brasileiro: aceita formatos (XX) XXXXX-XXXX ou (XX) XXXX-XXXX
-    // Também aceita variações com/sem parênteses, espaços ou hífen
-    const phoneRegex = /^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/;
-
-    // Regex para telefone (apenas dígitos): 10 ou 11 dígitos (DDD + número)
-    const phoneDigitsRegex = /^\d{10,11}$/;
-
-    // Add real-time validation on blur (when user leaves field)
-    nameInput.addEventListener('blur', function() {
-        validateField(nameInput, nameRegex, 'Nome deve conter apenas letras e ter entre 3 e 50 caracteres');
-    });
-
-    phoneInput.addEventListener('blur', function() {
-        const phoneValue = phoneInput.value.replace(/\D/g, ''); // Remove non-digits
-        if (!phoneDigitsRegex.test(phoneValue)) {
-            showFieldError(phoneInput, 'Telefone deve conter DDD e 8 ou 9 dígitos (ex: (71) 99999-9999)');
-        } else {
-            clearFieldError(phoneInput);
-        }
-    });
-
-    messageInput.addEventListener('blur', function() {
-        if (messageInput.value.trim().length < 10) {
-            showFieldError(messageInput, 'Mensagem deve ter pelo menos 10 caracteres');
-        } else {
-            clearFieldError(messageInput);
-        }
-    });
-
-    // Form submit validation
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        // Get form values
-        const name = nameInput.value.trim();
-        const phone = phoneInput.value.trim();
-        const service = serviceInput.value;
-        const message = messageInput.value.trim();
-        const formMessage = document.getElementById('form-message');
-
-        // Clear previous errors
-        clearAllFieldErrors();
-
-        // Validation array
-        let isValid = true;
-        let errors = [];
-
-        // Validate name with regex
-        if (name === '') {
-            showFieldError(nameInput, 'Por favor, insira seu nome completo');
-            errors.push('Nome é obrigatório');
-            isValid = false;
-        } else if (name.length < 3) {
-            showFieldError(nameInput, 'Nome deve ter pelo menos 3 caracteres');
-            errors.push('Nome muito curto');
-            isValid = false;
-        } else if (name.length > 50) {
-            showFieldError(nameInput, 'Nome deve ter no máximo 50 caracteres');
-            errors.push('Nome muito longo');
-            isValid = false;
-        } else if (!nameRegex.test(name)) {
-            showFieldError(nameInput, 'Nome deve conter apenas letras e espaços');
-            errors.push('Nome contém caracteres inválidos');
-            isValid = false;
-        }
-
-        // Validate phone with regex
-        const phoneDigits = phone.replace(/\D/g, ''); // Remove all non-digits for validation
-
-        if (phone === '') {
-            showFieldError(phoneInput, 'Por favor, insira seu telefone');
-            errors.push('Telefone é obrigatório');
-            isValid = false;
-        } else if (!phoneDigitsRegex.test(phoneDigits)) {
-            showFieldError(phoneInput, 'Telefone deve ter 10 ou 11 dígitos incluindo DDD (ex: (71) 99999-9999)');
-            errors.push('Telefone inválido');
-            isValid = false;
-        } else if (!phoneRegex.test(phone)) {
-            showFieldError(phoneInput, 'Formato de telefone inválido. Use: (XX) XXXXX-XXXX');
-            errors.push('Formato de telefone incorreto');
-            isValid = false;
-        }
-
-        // Validate service selection
-        if (service === '') {
-            showFieldError(serviceInput, 'Por favor, selecione um serviço');
-            errors.push('Serviço não selecionado');
-            isValid = false;
-        }
-
-        // Validate message
-        if (message === '') {
-            showFieldError(messageInput, 'Por favor, escreva uma mensagem');
-            errors.push('Mensagem é obrigatória');
-            isValid = false;
-        } else if (message.length < 10) {
-            showFieldError(messageInput, 'Mensagem deve ter pelo menos 10 caracteres');
-            errors.push('Mensagem muito curta');
-            isValid = false;
-        } else if (message.length > 500) {
-            showFieldError(messageInput, 'Mensagem deve ter no máximo 500 caracteres');
-            errors.push('Mensagem muito longa');
-            isValid = false;
-        }
-
-        // TERMOS DE USO E EMAILJS - Validate terms checkbox
-        if (!termsInput.checked) {
-            showFieldError(termsInput, 'Você precisa aceitar os Termos de Uso para enviar o formulário');
-            errors.push('Termos não aceitos');
-            isValid = false;
-        }
-
-        // Show errors or success
-        if (!isValid) {
-            showFormMessage(formMessage, 'Por favor, corrija os erros no formulário antes de enviar.', 'error');
-
-            // Scroll to first error
-            const firstError = contactForm.querySelector('.form-group.error');
-            if (firstError) {
-                firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        } else {
-            // All validations passed
-            // TERMOS DE USO E EMAILJS - Send form via EmailJS
-            showFormMessage(formMessage, 'Enviando mensagem...', 'success');
-
-            // Send email via EmailJS
-            emailjs.sendForm('service_88psr38', 'template_mx5bjs8', contactForm)
-                .then(function(response) {
-                    console.log('SUCCESS!', response.status, response.text);
-
-                    // Show success message
-                    showFormMessage(formMessage, 'Mensagem enviada com sucesso! Entraremos em contato em breve.', 'success');
-
-                    // Reset form after delay
-                    setTimeout(() => {
-                        contactForm.reset();
-                        clearAllFieldErrors();
-                    }, 2000);
-
-                    // Also send to WhatsApp after successful email
-                    setTimeout(() => {
-                        sendToWhatsApp(name, phone, service, message);
-                    }, 1000);
-
-                }, function(error) {
-                    console.error('FAILED...', error);
-
-                    // Show error message
-                    showFormMessage(formMessage, 'Erro ao enviar mensagem. Por favor, tente novamente ou entre em contato via WhatsApp.', 'error');
-
-                    // Fallback to WhatsApp
-                    setTimeout(() => {
-                        sendToWhatsApp(name, phone, service, message);
-                    }, 2000);
-                });
-        }
-    });
-}
-
-// Validate individual field with regex
-function validateField(input, regex, errorMessage) {
-    const value = input.value.trim();
-
-    if (value === '' || !regex.test(value)) {
-        showFieldError(input, errorMessage);
-        return false;
-    } else {
-        clearFieldError(input);
-        return true;
-    }
-}
-
-// Show error message for a specific field
-function showFieldError(input, message) {
-    const formGroup = input.closest('.form-group');
-
-    // Remove existing error message if any
-    const existingError = formGroup.querySelector('.field-error');
-    if (existingError) {
-        existingError.remove();
-    }
-
-    // Add error class
-    formGroup.classList.add('error');
-    input.classList.add('error');
-
-    // Create and append error message
-    const errorElement = document.createElement('span');
-    errorElement.className = 'field-error';
-    errorElement.textContent = message;
-    formGroup.appendChild(errorElement);
-}
-
-// Clear error for a specific field
-function clearFieldError(input) {
-    const formGroup = input.closest('.form-group');
-    formGroup.classList.remove('error');
-    input.classList.remove('error');
-
-    const errorElement = formGroup.querySelector('.field-error');
-    if (errorElement) {
-        errorElement.remove();
-    }
-}
-
-// Clear all field errors
-function clearAllFieldErrors() {
-    const errorFields = document.querySelectorAll('.form-group.error');
-    errorFields.forEach(field => {
-        field.classList.remove('error');
-    });
-
-    const errorInputs = document.querySelectorAll('.form-input.error');
-    errorInputs.forEach(input => {
-        input.classList.remove('error');
-    });
-
-    const errorMessages = document.querySelectorAll('.field-error');
-    errorMessages.forEach(msg => {
-        msg.remove();
-    });
-}
-
-// Show form message
-function showFormMessage(element, message, type) {
-    element.textContent = message;
-    element.className = `form-message ${type}`;
-    element.style.display = 'block';
-
-    // Hide message after 5 seconds
-    setTimeout(() => {
-        element.style.display = 'none';
-    }, 5000);
-}
-
-// Send form data to WhatsApp
-function sendToWhatsApp(name, phone, service, message) {
-    const whatsappNumber = '5571991702820';
-
-    const whatsappMessage = `*Nova mensagem do site!*%0A%0A` +
-        `*Nome:* ${encodeURIComponent(name)}%0A` +
-        `*Telefone:* ${encodeURIComponent(phone)}%0A` +
-        `*Serviço de Interesse:* ${encodeURIComponent(service)}%0A` +
-        `*Mensagem:* ${encodeURIComponent(message)}`;
-
-    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
-
-    // Open WhatsApp in new tab after a short delay
-    setTimeout(() => {
-        window.open(whatsappURL, '_blank');
-    }, 1000);
-}
-
-// ==================== PHONE MASK ====================
-function initPhoneMask() {
-    const phoneInput = document.getElementById('phone');
-
-    if (!phoneInput) return;
-
-    phoneInput.addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, ''); // Remove all non-digits
-
-        // Limit to 11 digits (Brazilian phone)
-        if (value.length > 11) {
-            value = value.slice(0, 11);
-        }
-
-        // Apply mask
-        if (value.length > 0) {
-            if (value.length <= 2) {
-                value = `(${value}`;
-            } else if (value.length <= 7) {
-                value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
-            } else {
-                value = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7)}`;
-            }
-        }
-
-        e.target.value = value;
-    });
-
-    // Prevent non-numeric input
-    phoneInput.addEventListener('keypress', function(e) {
-        const char = String.fromCharCode(e.which);
-        if (!/[0-9]/.test(char)) {
-            e.preventDefault();
-        }
     });
 }
 
@@ -679,9 +311,43 @@ window.addEventListener('error', (e) => {
 });
 
 // ==================== CONSOLE MESSAGE ====================
-console.log('%c🌟 JV Beleza & Estética 🌟', 'color: #d4a574; font-size: 20px; font-weight: bold;');
-console.log('%cWebsite desenvolvido com HTML, CSS e JavaScript puro', 'color: #5c3a1e; font-size: 12px;');
-console.log('%cContato: (71) 99170-2820', 'color: #e8a080; font-size: 12px;');
+console.log('%c🌿 JV Beleza & Estética 🌿', 'color: #c9a24b; font-size: 20px; font-weight: bold;');
+console.log('%cWebsite desenvolvido com HTML, CSS e JavaScript puro', 'color: #3f5b47; font-size: 12px;');
+console.log('%cContato: (71) 99170-2820', 'color: #b4694a; font-size: 12px;');
+
+// ==================== TERMOS DE USO E POLÍTICA DE PRIVACIDADE ====================
+function initTermsModal() {
+    const modal = document.getElementById('terms-modal');
+    const openLink = document.getElementById('open-terms-modal');
+    const closeBtn = document.getElementById('terms-modal-close');
+
+    if (!modal || !openLink || !closeBtn) return;
+
+    openLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    });
+
+    closeBtn.addEventListener('click', function() {
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+    });
+
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('show')) {
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+    });
+}
 
 // ==================== EXPORT FUNCTIONS (if needed) ====================
 // These functions can be called from outside if needed
@@ -704,45 +370,5 @@ window.JVBeauty = {
         const whatsappNumber = '5571991702820';
         const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
         window.open(whatsappURL, '_blank');
-    },
-
-    showFormMessage: showFormMessage
+    }
 };
-
-// ==================== TERMOS DE USO E EMAILJS ====================
-function initTermsModal() {
-    const modal = document.getElementById('terms-modal');
-    const openLink = document.getElementById('open-terms-modal');
-    const closeBtn = document.querySelector('.terms-modal-close');
-
-    if (!modal || !openLink || !closeBtn) return;
-
-    // Open modal
-    openLink.addEventListener('click', function(e) {
-        e.preventDefault();
-        modal.classList.add('show');
-        document.body.style.overflow = 'hidden'; // Prevent scrolling
-    });
-
-    // Close modal on X button
-    closeBtn.addEventListener('click', function() {
-        modal.classList.remove('show');
-        document.body.style.overflow = ''; // Restore scrolling
-    });
-
-    // Close modal when clicking outside
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            modal.classList.remove('show');
-            document.body.style.overflow = '';
-        }
-    });
-
-    // Close modal on ESC key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.classList.contains('show')) {
-            modal.classList.remove('show');
-            document.body.style.overflow = '';
-        }
-    });
-}

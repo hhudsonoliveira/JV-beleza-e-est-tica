@@ -59,12 +59,13 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 
     <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
 <body>
@@ -72,8 +73,14 @@
     <!-- ==================== PRELOADER ==================== -->
     <div class="preloader" id="preloader">
         <div class="preloader-content">
+            <svg class="preloader-sprig" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M30 55 C 30 40, 30 32, 30 8" stroke-linecap="round"/>
+                <path d="M30 22 C 30 22, 18 18, 12 24 C 18 29, 30 27, 30 33" stroke-linecap="round"/>
+                <path d="M30 33 C 30 33, 42 29, 48 35 C 42 40, 30 38, 30 44" stroke-linecap="round"/>
+                <circle cx="30" cy="6" r="3"/>
+            </svg>
             <div class="preloader-logo">JV</div>
-            <div class="preloader-text">Beleza & Estética</div>
+            <div class="preloader-text">Beleza &amp; Estética</div>
             <div class="preloader-bar"></div>
         </div>
     </div>
@@ -136,12 +143,25 @@
 
         <!-- ==================== HERO SECTION ==================== -->
         <section class="hero" id="home">
-            <div class="hero-particles" id="particles"></div>
-            <div class="hero-overlay"></div>
-            <div class="container">
-                <div class="hero-content">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <span class="hero-eyebrow">São Cristóvão · Salvador</span>
                     <h1 class="hero-title">Onde Beleza e Saúde Se Encontram</h1>
-                    <p class="hero-subtitle">Tratamentos estéticos avançados e cuidados personalizados para você se sentir ainda mais especial</p>
+                    <p class="hero-subtitle">Da drenagem linfática à escova progressiva: tratamentos estéticos e capilares num espaço acolhedor no coração de São Cristóvão, Salvador.</p>
+                    <div class="hero-chips">
+                        <span class="hero-chip">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            São Cristóvão, Salvador
+                        </span>
+                        <span class="hero-chip">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            Terça a Sábado, 08h-18h
+                        </span>
+                        <span class="hero-chip">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                            Resposta rápida no WhatsApp
+                        </span>
+                    </div>
                     <div class="hero-buttons">
                         <a href="https://wa.me/5571991702820?text=Olá!%20Gostaria%20de%20agendar%20um%20horário" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -151,6 +171,16 @@
                         </a>
                         <a href="#servicos" class="btn btn-secondary">Nossos Serviços</a>
                     </div>
+                </div>
+
+                <div class="hero-illustration">
+                    <svg viewBox="0 0 200 260" fill="none" stroke="currentColor" stroke-width="2">
+                        <path class="branch" d="M100 240 C 100 170, 100 140, 100 30" stroke-linecap="round"/>
+                        <path class="branch" d="M100 80 C 100 80, 62 68, 42 86 C 62 102, 100 98, 100 118" stroke-linecap="round"/>
+                        <path class="branch" d="M100 118 C 100 118, 138 106, 158 124 C 138 140, 100 136, 100 156" stroke-linecap="round"/>
+                        <path class="branch" d="M100 156 C 100 156, 66 146, 48 166 C 66 182, 100 178, 100 198" stroke-linecap="round"/>
+                        <circle class="bud" cx="100" cy="26" r="8"/>
+                    </svg>
                 </div>
             </div>
 
@@ -176,7 +206,7 @@
                 <div class="about-content">
                     <div class="about-text reveal">
                         <p class="about-description">
-                            No JV Beleza & Estética, acreditamos que cuidar de si mesmo é um ato de amor próprio. Localizado em São Cristóvão, Salvador, oferecemos um espaço acolhedor onde você encontra os melhores tratamentos de estética e saúde, com profissionais qualificados e equipamentos de última geração.
+                            No JV Beleza & Estética, cuidar de você é um ato de amor próprio — e o nosso ofício. Em São Cristóvão, Salvador, reunimos num só espaço acolhedor os cuidados de estética e saúde, como drenagem linfática e liberação miofascial, e os tratamentos de beleza capilar, como escova progressiva e botox capilar, sempre com profissionais qualificados e equipamentos atualizados.
                         </p>
                     </div>
 
@@ -232,178 +262,131 @@
                 <!-- Estética e Saúde -->
                 <div class="services-category reveal">
                     <h3 class="category-title">Estética e Saúde</h3>
-                    <div class="services-grid">
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                                </svg>
+                    <div class="services-list">
+                        <div class="service-row">
+                            <div class="service-row-main">
+                                <h4 class="service-name">Drenagem Linfática Pré e Pós-Operatória</h4>
+                                <p class="service-desc">Técnica especializada para reduzir inchaços e acelerar a recuperação</p>
                             </div>
-                            <h4 class="service-title">Drenagem Linfática Pré e Pós-Operatória</h4>
-                            <p class="service-description">Técnica especializada para reduzir inchaços e acelerar a recuperação</p>
+                            <span class="service-tag">Pré/Pós-op</span>
                         </div>
 
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <circle cx="12" cy="12" r="6"></circle>
-                                    <circle cx="12" cy="12" r="2"></circle>
-                                </svg>
+                        <div class="service-row">
+                            <div class="service-row-main">
+                                <h4 class="service-name">Liberação Miofascial</h4>
+                                <p class="service-desc">Alívio de tensões musculares e melhora da mobilidade</p>
                             </div>
-                            <h4 class="service-title">Liberação Miofascial</h4>
-                            <p class="service-description">Alívio de tensões musculares e melhora da mobilidade</p>
+                            <span class="service-tag">Muscular</span>
                         </div>
 
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <line x1="12" y1="8" x2="12" y2="12"></line>
-                                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                                </svg>
+                        <div class="service-row">
+                            <div class="service-row-main">
+                                <h4 class="service-name">Ventosa Terapia</h4>
+                                <p class="service-desc">Tratamento milenar para dores e relaxamento muscular</p>
                             </div>
-                            <h4 class="service-title">Ventosa Terapia</h4>
-                            <p class="service-description">Tratamento milenar para dores e relaxamento muscular</p>
+                            <span class="service-tag">Corpo</span>
                         </div>
 
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"></path>
-                                </svg>
+                        <div class="service-row">
+                            <div class="service-row-main">
+                                <h4 class="service-name">Acupuntura Auricular</h4>
+                                <p class="service-desc">Estímulo de pontos na orelha para mais relaxamento e equilíbrio no dia a dia</p>
                             </div>
-                            <h4 class="service-title">Acupuntura Auricular</h4>
-                            <p class="service-description">Equilíbrio energético e bem-estar através da medicina chinesa</p>
+                            <span class="service-tag">Bem-estar</span>
                         </div>
 
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 2v20M2 12h20"></path>
-                                </svg>
+                        <div class="service-row">
+                            <div class="service-row-main">
+                                <h4 class="service-name">Reflexologia Comportamental</h4>
+                                <p class="service-desc">Estímulo de pontos reflexos nos pés para aliviar tensões e renovar as energias</p>
                             </div>
-                            <h4 class="service-title">Reflexologia Comportamental</h4>
-                            <p class="service-description">Estímulo de pontos reflexos para harmonia corpo-mente</p>
+                            <span class="service-tag">Corpo-mente</span>
                         </div>
 
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
-                                    <line x1="9" y1="9" x2="9.01" y2="9"></line>
-                                    <line x1="15" y1="9" x2="15.01" y2="9"></line>
-                                </svg>
+                        <div class="service-row">
+                            <div class="service-row-main">
+                                <h4 class="service-name">Limpeza de Pele com Alta Frequência</h4>
+                                <p class="service-desc">Remove impurezas e ativa a renovação celular para uma pele mais limpa e radiante</p>
                             </div>
-                            <h4 class="service-title">Limpeza de Pele com Alta Frequência</h4>
-                            <p class="service-description">Pele renovada, limpa e radiante com tecnologia avançada</p>
+                            <span class="service-tag">Pele</span>
                         </div>
 
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
-                                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-                                    <line x1="12" y1="19" x2="12" y2="22"></line>
-                                </svg>
+                        <div class="service-row">
+                            <div class="service-row-main">
+                                <h4 class="service-name">Massagem Relaxante</h4>
+                                <p class="service-desc">Momento de paz e relaxamento profundo para corpo e mente</p>
                             </div>
-                            <h4 class="service-title">Massagem Relaxante</h4>
-                            <p class="service-description">Momento de paz e relaxamento profundo para corpo e mente</p>
+                            <span class="service-tag">Relaxamento</span>
                         </div>
 
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"></path>
-                                    <path d="M12 14c-4.42 0-8 2.69-8 6v2h16v-2c0-3.31-3.58-6-8-6z"></path>
-                                    <path d="M18 8c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1z"></path>
-                                    <path d="M6 8c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1z"></path>
-                                </svg>
+                        <div class="service-row">
+                            <div class="service-row-main">
+                                <h4 class="service-name">Massagem Modeladora</h4>
+                                <p class="service-desc">Técnica que reduz medidas, combate a celulite e modela o corpo</p>
                             </div>
-                            <h4 class="service-title">Massagem Modeladora</h4>
-                            <p class="service-description">Técnica que reduz medidas, combate a celulite e modela o corpo</p>
+                            <span class="service-tag">Modelagem</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Beleza -->
-                <div class="services-category reveal">
+                <div class="services-category services-category--beleza reveal">
                     <h3 class="category-title">Beleza</h3>
-                    <div class="services-grid">
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
-                                    <line x1="7" y1="7" x2="7.01" y2="7"></line>
-                                </svg>
+                    <div class="services-list">
+                        <div class="service-row">
+                            <div class="service-row-main">
+                                <h4 class="service-name">Escova Progressiva</h4>
+                                <p class="service-desc">Cabelos lisos, alinhados e com brilho duradouro</p>
                             </div>
-                            <h4 class="service-title">Escova Progressiva</h4>
-                            <p class="service-description">Cabelos lisos, alinhados e com brilho duradouro</p>
+                            <span class="service-tag">Cabelo</span>
                         </div>
 
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                                </svg>
+                        <div class="service-row">
+                            <div class="service-row-main">
+                                <h4 class="service-name">Botox Capilar</h4>
+                                <p class="service-desc">Tratamento intensivo que recupera e rejuvenesce os fios</p>
                             </div>
-                            <h4 class="service-title">Botox Capilar</h4>
-                            <p class="service-description">Tratamento intensivo que recupera e rejuvenesce os fios</p>
+                            <span class="service-tag">Cabelo</span>
                         </div>
 
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                                </svg>
+                        <div class="service-row">
+                            <div class="service-row-main">
+                                <h4 class="service-name">Tratamento Capilar</h4>
+                                <p class="service-desc">Hidratação profunda e nutrição para cabelos saudáveis</p>
                             </div>
-                            <h4 class="service-title">Tratamento Capilar</h4>
-                            <p class="service-description">Hidratação profunda e nutrição para cabelos saudáveis</p>
+                            <span class="service-tag">Cabelo</span>
                         </div>
 
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-                                </svg>
+                        <div class="service-row">
+                            <div class="service-row-main">
+                                <h4 class="service-name">Reconstrução Capilar</h4>
+                                <p class="service-desc">Restauração completa de cabelos danificados</p>
                             </div>
-                            <h4 class="service-title">Reconstrução Capilar</h4>
-                            <p class="service-description">Restauração completa de cabelos danificados</p>
+                            <span class="service-tag">Cabelo</span>
                         </div>
 
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <line x1="14.31" y1="8" x2="20.05" y2="17.94"></line>
-                                    <line x1="9.69" y1="8" x2="21.17" y2="8"></line>
-                                    <line x1="7.38" y1="12" x2="13.12" y2="2.06"></line>
-                                    <line x1="9.69" y1="16" x2="3.95" y2="6.06"></line>
-                                </svg>
+                        <div class="service-row">
+                            <div class="service-row-main">
+                                <h4 class="service-name">Mechas Luminosas</h4>
+                                <p class="service-desc">Iluminação natural e moderna para destacar sua beleza</p>
                             </div>
-                            <h4 class="service-title">Mechas Luminosas</h4>
-                            <p class="service-description">Iluminação natural e moderna para destacar sua beleza</p>
+                            <span class="service-tag">Coloração</span>
                         </div>
 
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
-                                </svg>
+                        <div class="service-row">
+                            <div class="service-row-main">
+                                <h4 class="service-name">Corte Ideal</h4>
+                                <p class="service-desc">Corte personalizado que valoriza seu estilo único</p>
                             </div>
-                            <h4 class="service-title">Corte Ideal</h4>
-                            <p class="service-description">Corte personalizado que valoriza seu estilo único</p>
+                            <span class="service-tag">Corte</span>
                         </div>
 
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 20v-6M6 20V10M18 20V4"></path>
-                                </svg>
+                        <div class="service-row">
+                            <div class="service-row-main">
+                                <h4 class="service-name">Permanente</h4>
+                                <p class="service-desc">Cachos e ondas definidas com durabilidade</p>
                             </div>
-                            <h4 class="service-title">Permanente</h4>
-                            <p class="service-description">Cachos e ondas definidas com durabilidade</p>
+                            <span class="service-tag">Cachos</span>
                         </div>
                     </div>
                 </div>
@@ -429,7 +412,7 @@
                             </svg>
                         </div>
                         <h3 class="benefit-title">Profissionais Qualificados</h3>
-                        <p class="benefit-description">Nossa equipe é formada por especialistas certificados, com anos de experiência e em constante atualização nas melhores técnicas do mercado.</p>
+                        <p class="benefit-description">Nossa equipe é formada por especialistas certificados, com anos de experiência e sempre atualizada com as técnicas mais recentes do mercado.</p>
                     </div>
 
                     <div class="benefit-card reveal stagger-2">
@@ -462,7 +445,7 @@
                             </svg>
                         </div>
                         <h3 class="benefit-title">Equipamentos Modernos</h3>
-                        <p class="benefit-description">Investimos em tecnologia de ponta para garantir resultados excepcionais com segurança e eficácia em todos os procedimentos.</p>
+                        <p class="benefit-description">Investimos em equipamentos atualizados para unir segurança e eficácia em cada procedimento.</p>
                     </div>
 
                     <div class="benefit-card reveal stagger-5">
@@ -475,6 +458,56 @@
                         <h3 class="benefit-title">Localização Privilegiada</h3>
                         <p class="benefit-description">Estamos no coração de São Cristóvão, Salvador, com fácil acesso e estacionamento próximo para sua comodidade.</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== GALLERY PREVIEW SECTION ==================== -->
+        <section class="section section-gallery-preview">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Conheça Nosso Trabalho</h2>
+                    <div class="section-divider"></div>
+                    <p class="section-subtitle">Um pouco do nosso dia a dia em vídeo — veja mais na galeria completa</p>
+                </div>
+
+                <div class="gallery-preview-grid">
+                    <a href="galeria.html" class="gallery-preview-item reveal stagger-1" aria-label="Ver galeria completa">
+                        <video muted loop playsinline preload="metadata">
+                            <source src="images/galeria/video1.mp4#t=0.5" type="video/mp4">
+                        </video>
+                        <span class="gallery-preview-overlay">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                        </span>
+                    </a>
+
+                    <a href="galeria.html" class="gallery-preview-item reveal stagger-2" aria-label="Ver galeria completa">
+                        <video muted loop playsinline preload="metadata">
+                            <source src="images/galeria/video2.mp4#t=0.5" type="video/mp4">
+                        </video>
+                        <span class="gallery-preview-overlay">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                        </span>
+                    </a>
+
+                    <a href="galeria.html" class="gallery-preview-item reveal stagger-3" aria-label="Ver galeria completa">
+                        <video muted loop playsinline preload="metadata">
+                            <source src="images/galeria/video3.mp4#t=0.5" type="video/mp4">
+                        </video>
+                        <span class="gallery-preview-overlay">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+
+                <div class="gallery-preview-cta reveal">
+                    <a href="galeria.html" class="btn btn-secondary">Ver Galeria Completa</a>
                 </div>
             </div>
         </section>
@@ -559,132 +592,6 @@
                         </div>
                     </div>
 
-                    <!-- Contact Form -->
-                    <div class="contact-form-wrapper reveal-right">
-                        <form class="contact-form" id="contact-form">
-                            <h3 class="form-title">Envie uma Mensagem</h3>
-
-                            <div class="form-group">
-                                <label for="name" class="form-label">Nome Completo</label>
-                                <input type="text" id="name" name="name" class="form-input" placeholder="Seu nome completo"
-                                       pattern="[A-Za-zÀ-ÿ\s']{3,50}"
-                                       title="Nome deve conter apenas letras e ter entre 3 e 50 caracteres"
-                                       minlength="3" maxlength="50" required>
-                                <span class="field-error"></span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="phone" class="form-label">Telefone / WhatsApp</label>
-                                <input type="tel" id="phone" name="phone" class="form-input" placeholder="(71) 99999-9999"
-                                       pattern="\(?\d{2}\)?\s?\d{4,5}-?\d{4}"
-                                       title="Formato: (XX) XXXXX-XXXX ou (XX) XXXX-XXXX" required>
-                                <span class="field-error"></span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="service" class="form-label">Serviço de Interesse</label>
-                                <select id="service" name="service" class="form-input" required>
-                                    <option value="">Selecione um serviço</option>
-                                    <option value="drenagem">Drenagem Linfática</option>
-                                    <option value="miofascial">Liberação Miofascial</option>
-                                    <option value="ventosa">Ventosa Terapia</option>
-                                    <option value="acupuntura">Acupuntura Auricular</option>
-                                    <option value="reflexologia">Reflexologia</option>
-                                    <option value="limpeza">Limpeza de Pele</option>
-                                    <option value="massagem">Massagem Relaxante</option>
-                                    <option value="progressiva">Escova Progressiva</option>
-                                    <option value="botox">Botox Capilar</option>
-                                    <option value="tratamento">Tratamento Capilar</option>
-                                    <option value="reconstrucao">Reconstrução Capilar</option>
-                                    <option value="mechas">Mechas</option>
-                                    <option value="corte">Corte</option>
-                                    <option value="permanente">Permanente</option>
-                                    <option value="outro">Outro</option>
-                                </select>
-                                <span class="field-error"></span>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="message" class="form-label">Mensagem</label>
-                                <textarea id="message" name="message" class="form-input form-textarea"
-                                          placeholder="Conte-nos mais sobre o que você precisa..."
-                                          rows="5" minlength="10" maxlength="500" required></textarea>
-                                <span class="field-error"></span>
-                            </div>
-
-                            <!-- TERMOS DE USO JV BELEZA -->
-                            <div class="form-group terms-group">
-                                <label class="terms-checkbox">
-                                    <input type="checkbox" id="terms" name="terms" required>
-                                    <span class="terms-text">
-                                        Li e aceito os <a href="#" id="open-terms-modal" class="terms-link">Termos de Uso e Política de Privacidade</a>
-                                    </span>
-                                </label>
-                                <span class="field-error"></span>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary btn-submit">
-                                Enviar Mensagem
-                            </button>
-
-                            <div class="form-message" id="form-message"></div>
-                        </form>
-                    </div>
-
-                    <!-- TERMOS DE USO JV BELEZA - MODAL -->
-                    <div id="terms-modal" class="terms-modal">
-                        <div class="terms-modal-content">
-                            <span class="terms-modal-close">&times;</span>
-                            <h3 class="terms-modal-title">Termos de Uso e Política de Privacidade – JV Beleza & Estética</h3>
-                            <div class="terms-modal-body">
-                                <h4>Coleta de Dados</h4>
-                                <p>Ao preencher o formulário de contato, coletamos as seguintes informações:</p>
-                                <ul>
-                                    <li>Nome completo</li>
-                                    <li>Endereço de e-mail</li>
-                                    <li>Número de telefone</li>
-                                    <li>Mensagem enviada</li>
-                                </ul>
-                                <p>Estes dados são coletados exclusivamente para fins de comunicação e resposta à sua solicitação.</p>
-
-                                <h4>Uso das Informações</h4>
-                                <p>As informações fornecidas serão utilizadas para:</p>
-                                <ul>
-                                    <li>Responder à sua solicitação de contato</li>
-                                    <li>Fornecer informações sobre nossos serviços</li>
-                                    <li>Enviar propostas comerciais, quando solicitado</li>
-                                    <li>Manter histórico de comunicação para melhor atendimento</li>
-                                </ul>
-                                <p><strong>Importante:</strong> Seus dados NÃO serão compartilhados com terceiros sem seu consentimento explícito.</p>
-
-                                <h4>Segurança dos Dados</h4>
-                                <p>A JV Beleza & Estética se compromete a proteger suas informações pessoais.</p>
-                                <ul>
-                                    <li>Implementamos medidas de segurança técnicas e organizacionais para proteger seus dados contra acesso não autorizado, perda ou alteração.</li>
-                                    <li>Utilizamos serviços de terceiros confiáveis (como o EmailJS) para processar o envio de mensagens, que seguem padrões de segurança reconhecidos.</li>
-                                </ul>
-
-                                <h4>Direitos do Usuário</h4>
-                                <p>De acordo com a LGPD (Lei Geral de Proteção de Dados), você tem direito a:</p>
-                                <ul>
-                                    <li>Solicitar acesso aos seus dados pessoais</li>
-                                    <li>Solicitar correção de dados incompletos ou desatualizados</li>
-                                    <li>Solicitar exclusão dos seus dados</li>
-                                    <li>Revogar seu consentimento a qualquer momento</li>
-                                </ul>
-                                <p>Para exercer esses direitos, entre em contato através do e-mail: <strong>contato@jvsaudebelezaestetica.com</strong></p>
-
-                                <h4>Consentimento</h4>
-                                <p>Ao marcar a caixa e enviar o formulário, você declara que:</p>
-                                <ul>
-                                    <li>Leu e compreendeu estes termos</li>
-                                    <li>Concorda com a coleta e uso das suas informações conforme descrito</li>
-                                    <li>Está ciente dos seus direitos em relação aos seus dados pessoais</li>
-                                    <li>Autoriza o contato da JV Beleza & Estética para retorno da sua solicitação</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Google Maps -->
@@ -780,12 +687,42 @@
                 <p class="footer-copyright">
                     &copy; 2026 JV Beleza & Estética. Todos os direitos reservados.
                 </p>
+                <p class="footer-legal">
+                    <a href="#" id="open-terms-modal">Termos de Uso e Política de Privacidade</a>
+                </p>
                 <p class="footer-credits">
                     Desenvolvido por <a href="https://hodevweb.com.br/" target="_blank" rel="noopener">HO DEVWEB</a> | <a href="https://instagram.com/hhudson.oliveira" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg> @hhudson.oliveira</a>
                 </p>
             </div>
         </div>
     </footer>
+
+    <!-- ==================== TERMOS DE USO E POLÍTICA DE PRIVACIDADE - MODAL ==================== -->
+    <div id="terms-modal" class="terms-modal">
+        <div class="terms-modal-content">
+            <span class="terms-modal-close" id="terms-modal-close">&times;</span>
+            <h3 class="terms-modal-title">Termos de Uso e Política de Privacidade</h3>
+            <div class="terms-modal-body">
+                <h4>Sobre este site</h4>
+                <p>Este é um site institucional da JV Beleza & Estética, com finalidade informativa: apresentar nossos serviços, endereço, horário de funcionamento e formas de contato. Não há cadastro de usuários nem formulário de coleta de dados no site.</p>
+
+                <h4>Contato via WhatsApp, telefone, e-mail e Instagram</h4>
+                <p>Os botões de contato deste site direcionam você para aplicativos de terceiros (WhatsApp, seu aplicativo de e-mail, Instagram). As mensagens trocadas nessas conversas ficam armazenadas nesses aplicativos e são regidas pelas políticas de privacidade de cada um deles, não por este site.</p>
+
+                <h4>Google Maps</h4>
+                <p>Este site incorpora um mapa do Google para mostrar nossa localização. Ao carregar essa seção, o Google pode definir cookies próprios, conforme a política de privacidade do Google.</p>
+
+                <h4>Seus direitos (LGPD)</h4>
+                <p>De acordo com a Lei Geral de Proteção de Dados (LGPD), você pode, a qualquer momento, solicitar esclarecimentos sobre como eventuais dados trocados em nossas conversas de atendimento são utilizados. Basta entrar em contato pelo e-mail <strong>oliveirajacirajv@gmail.com</strong>.</p>
+
+                <h4>Propriedade de conteúdo</h4>
+                <p>Textos, fotos e vídeos publicados neste site pertencem à JV Beleza & Estética e não podem ser reproduzidos sem autorização.</p>
+
+                <h4>Atualizações</h4>
+                <p>Este documento pode ser atualizado periodicamente. Última atualização: julho de 2026.</p>
+            </div>
+        </div>
+    </div>
 
     <!-- ==================== FLOATING WHATSAPP BUTTON ==================== -->
     <a href="https://wa.me/5571991702820?text=Olá!%20Gostaria%20de%20agendar%20um%20horário" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contato via WhatsApp">
@@ -795,24 +732,7 @@
         <span class="whatsapp-tooltip">Agendar Horário</span>
     </a>
 
-    <!-- ==================== SCROLL TO TOP BUTTON ==================== -->
-    <button class="scroll-top" id="scroll-top" aria-label="Voltar ao topo">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="12" y1="19" x2="12" y2="5"></line>
-            <polyline points="5 12 12 5 19 12"></polyline>
-        </svg>
-    </button>
-
     <!-- JavaScript -->
-    <!-- TERMOS DE USO E EMAILJS - EmailJS Library -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script>
-        // Initialize EmailJS
-        (function(){
-            emailjs.init("15CqBHYUJI9PzZ7eF");
-        })();
-    </script>
-
     <script src="js/script.js"></script>
 
 </body>
