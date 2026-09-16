@@ -55,11 +55,23 @@
 }
 
 /* ==================== GALLERY GRID ==================== */
+/* Todos os vídeos são retrato (~9:16). Colunas estreitas deixam três a
+   quatro por linha no desktop, em vez de poucos blocos enormes. */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-auto-flow: dense;
     gap: var(--spacing-md);
     margin-top: var(--spacing-lg);
+}
+
+/* Ritmo de ateliê: a primeira peça ganha o dobro de largura e vira a
+   abertura da série; as demais seguem em cadência regular. */
+@media screen and (min-width: 900px) {
+    .gallery-item:first-child {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
 }
 
 /* Responsive Grid */
@@ -83,7 +95,9 @@
     overflow: hidden;
     border-radius: var(--radius-lg);
     background-color: var(--bg-dark);
-    aspect-ratio: 1;
+    /* Era aspect-ratio: 1, que cortava ~44% da altura de cada vídeo
+       retrato. O enquadramento agora é o que foi filmado. */
+    aspect-ratio: 9 / 16;
     cursor: pointer;
     transition: transform var(--transition-normal), box-shadow var(--transition-normal);
 }
@@ -111,7 +125,7 @@
 
 .gallery-item:hover img,
 .gallery-item:hover video {
-    transform: scale(1.1);
+    transform: scale(1.04);
 }
 
 /* ==================== GALLERY OVERLAY ==================== */

@@ -837,6 +837,55 @@ button {
     transform: translateX(10px);
 }
 
+/* Barra de latão que sobe pela borda esquerda ao passar o mouse.
+   Escala em Y a partir do topo: dá direção ao movimento, em vez de só
+   aparecer. Fica em 2px para não competir com o nome do serviço. */
+.service-row::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--primary-gold);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform var(--transition-normal);
+    z-index: 1;
+}
+
+.service-row:hover::after,
+.service-row:focus-visible::after {
+    transform: scaleY(1);
+}
+
+/* O nome escurece de leve: confirma que a linha inteira é clicável */
+.service-name {
+    transition: color var(--transition-normal);
+}
+
+.service-row:hover .service-name,
+.service-row:focus-visible .service-name {
+    color: var(--primary-black);
+}
+
+/* A seta adianta-se um passo, apontando para onde o clique leva */
+.service-cta svg {
+    transition: transform var(--transition-fast);
+}
+
+.service-row:hover .service-cta svg,
+.service-row:focus-visible .service-cta svg {
+    transform: translateX(3px);
+}
+
+@media (hover: none) {
+    .service-row::after {
+        transform: scaleY(1);
+        opacity: 0.35;
+    }
+}
+
 /* O lado direito junta a etiqueta e a chamada de agendamento */
 .service-row-side {
     position: relative;
@@ -1834,15 +1883,127 @@ textarea:focus-visible {
     outline: none;
 }
 
+/* ==================== AGENDAMENTO EM TRÊS PASSOS ==================== */
+/* Antes do botão grande: diz o que acontece depois do clique, que é a
+   dúvida que trava quem nunca chamou o salão no WhatsApp. */
+.agendamento-passos {
+    list-style: none;
+    margin: var(--spacing-lg) 0 var(--spacing-md);
+    padding: var(--spacing-md);
+    border: 1px solid rgba(169, 129, 46, 0.35);
+    border-radius: var(--radius-lg);
+    background: rgba(169, 129, 46, 0.06);
+    display: grid;
+    gap: var(--spacing-sm);
+}
+
+.agendamento-passo {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+}
+
+.agendamento-numero {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--primary-brown);
+    color: var(--text-white);
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.agendamento-texto {
+    padding-top: 0.3rem;
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--text-gray);
+}
+
 /* ==================== DEPOIMENTOS ==================== */
 .section-depoimentos {
     background: var(--bg-light);
 }
 
-.depoimentos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+/* Carrossel em scroll nativo com encaixe. Arrastar já funciona no toque
+   sem JS nenhum; os botões existem só para quem usa mouse e teclado. */
+.depoimentos-slider {
+    position: relative;
+}
+
+.depoimentos-track {
+    display: flex;
     gap: var(--spacing-lg);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 var(--spacing-sm);
+    padding-bottom: var(--spacing-sm);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(169, 129, 46, 0.45) transparent;
+}
+
+.depoimentos-track:focus-visible {
+    outline: 2px solid var(--primary-gold);
+    outline-offset: 4px;
+}
+
+.depoimentos-track::-webkit-scrollbar {
+    height: 6px;
+}
+
+.depoimentos-track::-webkit-scrollbar-thumb {
+    background: rgba(169, 129, 46, 0.45);
+    border-radius: 50px;
+}
+
+.depoimentos-track > .depoimento {
+    flex: 0 0 clamp(260px, 78vw, 380px);
+    scroll-snap-align: center;
+}
+
+.depoimentos-controles {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+}
+
+.depoimentos-controles[hidden] {
+    display: none;
+}
+
+.depoimento-nav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: 1px solid rgba(63, 91, 71, 0.3);
+    border-radius: 50%;
+    color: var(--primary-brown);
+    cursor: pointer;
+    transition: background-color var(--transition-normal),
+                border-color var(--transition-normal),
+                color var(--transition-normal);
+}
+
+.depoimento-nav:hover:not(:disabled) {
+    background: var(--primary-brown);
+    border-color: var(--primary-brown);
+    color: var(--text-white);
+}
+
+.depoimento-nav:disabled {
+    opacity: 0.35;
+    cursor: default;
 }
 
 .depoimento {

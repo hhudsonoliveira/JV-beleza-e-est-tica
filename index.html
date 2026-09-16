@@ -584,30 +584,41 @@
                     <div class="section-divider"></div>
                 </div>
 
-                <div class="depoimentos-grid">
-                    <figure class="depoimento reveal stagger-1">
-                        <blockquote class="depoimento-texto">DEPOIMENTO REAL AQUI</blockquote>
-                        <figcaption class="depoimento-autora">
-                            <span class="depoimento-nome">NOME E INICIAL</span>
-                            <span class="depoimento-servico">SERVIÇO QUE ELA FEZ</span>
-                        </figcaption>
-                    </figure>
+                <div class="depoimentos-slider">
+                    <div class="depoimentos-track" id="depoimentos-track" tabindex="0"
+                         role="region" aria-label="Depoimentos de clientes">
+                        <figure class="depoimento">
+                            <blockquote class="depoimento-texto">DEPOIMENTO REAL AQUI</blockquote>
+                            <figcaption class="depoimento-autora">
+                                <span class="depoimento-nome">NOME E INICIAL</span>
+                                <span class="depoimento-servico">SERVICO QUE ELA FEZ</span>
+                            </figcaption>
+                        </figure>
+                        <figure class="depoimento">
+                            <blockquote class="depoimento-texto">DEPOIMENTO REAL AQUI</blockquote>
+                            <figcaption class="depoimento-autora">
+                                <span class="depoimento-nome">NOME E INICIAL</span>
+                                <span class="depoimento-servico">SERVICO QUE ELA FEZ</span>
+                            </figcaption>
+                        </figure>
+                        <figure class="depoimento">
+                            <blockquote class="depoimento-texto">DEPOIMENTO REAL AQUI</blockquote>
+                            <figcaption class="depoimento-autora">
+                                <span class="depoimento-nome">NOME E INICIAL</span>
+                                <span class="depoimento-servico">SERVICO QUE ELA FEZ</span>
+                            </figcaption>
+                        </figure>
+                    </div>
 
-                    <figure class="depoimento reveal stagger-2">
-                        <blockquote class="depoimento-texto">DEPOIMENTO REAL AQUI</blockquote>
-                        <figcaption class="depoimento-autora">
-                            <span class="depoimento-nome">NOME E INICIAL</span>
-                            <span class="depoimento-servico">SERVIÇO QUE ELA FEZ</span>
-                        </figcaption>
-                    </figure>
-
-                    <figure class="depoimento reveal stagger-3">
-                        <blockquote class="depoimento-texto">DEPOIMENTO REAL AQUI</blockquote>
-                        <figcaption class="depoimento-autora">
-                            <span class="depoimento-nome">NOME E INICIAL</span>
-                            <span class="depoimento-servico">SERVIÇO QUE ELA FEZ</span>
-                        </figcaption>
-                    </figure>
+                    <div class="depoimentos-controles" id="depoimentos-controles" hidden>
+                        <button class="depoimento-nav" type="button" data-dir="-1" aria-label="Depoimento anterior">
+                            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                        </button>
+                        <button class="depoimento-nav" type="button" data-dir="1" aria-label="Proximo depoimento">
+                            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </button>
+                    </div>
+                </div>
                 </div>
             </div>
         </section>
@@ -658,6 +669,18 @@
                             </svg>
                         </span>
                     </a>
+
+                    <a href="galeria.html" class="gallery-preview-item reveal stagger-4" aria-label="Ver galeria completa">
+                        <video muted loop playsinline preload="none"
+                               poster="images/galeria/video4-poster.jpg">
+                            <source src="images/galeria/video4.mp4" type="video/mp4">
+                        </video>
+                        <span class="gallery-preview-overlay">
+                            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                        </span>
+                    </a>
                 </div>
 
                 <div class="gallery-preview-cta reveal">
@@ -670,9 +693,9 @@
         <section class="section section-contact" id="contato">
             <div class="container">
                 <div class="section-header reveal">
-                    <h2 class="section-title">Entre em Contato</h2>
+                    <h2 class="section-title">Agende Seu Horário</h2>
                     <div class="section-divider"></div>
-                    <p class="section-subtitle">Estamos prontos para cuidar de você</p>
+                    <p class="section-subtitle">Pelo WhatsApp, em três passos</p>
                 </div>
 
                 <div class="contact-content">
@@ -735,6 +758,21 @@
                                 </p>
                             </div>
                         </div>
+
+                        <ol class="agendamento-passos reveal">
+                            <li class="agendamento-passo">
+                                <span class="agendamento-numero">1</span>
+                                <span class="agendamento-texto">Você chama no WhatsApp e diz qual serviço quer</span>
+                            </li>
+                            <li class="agendamento-passo">
+                                <span class="agendamento-numero">2</span>
+                                <span class="agendamento-texto">A gente confere os horários livres e combina o melhor para você</span>
+                            </li>
+                            <li class="agendamento-passo">
+                                <span class="agendamento-numero">3</span>
+                                <span class="agendamento-texto">Pronto: é só aparecer no dia</span>
+                            </li>
+                        </ol>
 
                         <div class="cta-whatsapp">
                             <a href="https://wa.me/5571991702820?text=Olá!%20Gostaria%20de%20agendar%20um%20horário" class="btn btn-primary btn-large" target="_blank" rel="noopener noreferrer">

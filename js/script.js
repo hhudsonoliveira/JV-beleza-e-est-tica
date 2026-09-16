@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollEffects();
     initRevealAnimations();
     initGalleryPreview();
+    initDepoimentosSlider();
     initTermsModal();
 });
 
@@ -207,6 +208,54 @@ function initScrollEffects() {
 
     window.addEventListener('scroll', aoRolar, { passive: true });
     aoRolar();
+}
+
+// ==================== CARROSSEL DE DEPOIMENTOS ====================
+// A rolagem e o encaixe são nativos do CSS: arrastar no toque funciona mesmo
+// se este script falhar. Aqui só entram os botões, que existem para mouse e
+// teclado, e o estado de fim de curso.
+function initDepoimentosSlider() {
+    const track = document.getElementById('depoimentos-track');
+    const controles = document.getElementById('depoimentos-controles');
+    if (!track || !controles) return;
+
+    const botoes = controles.querySelectorAll('.depoimento-nav');
+    const cards = track.querySelectorAll('.depoimento');
+    if (!cards.length) return;
+
+    function passo() {
+        const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+        return cards[0].getBoundingClientRect().width + gap;
+    }
+
+    // Sem transbordo não há o que navegar; os botões seriam enfeite morto.
+    function atualizar() {
+        const transborda = track.scrollWidth - track.clientWidth > 1;
+        controles.hidden = !transborda;
+        if (!transborda) return;
+
+        const fim = track.scrollWidth - track.clientWidth - track.scrollLeft <= 1;
+        botoes.forEach(b => {
+            const dir = Number(b.dataset.dir);
+            b.disabled = dir < 0 ? track.scrollLeft <= 1 : fim;
+        });
+    }
+
+    botoes.forEach(botao => {
+        botao.addEventListener('click', () => {
+            track.scrollBy({
+                left: Number(botao.dataset.dir) * passo(),
+                behavior: prefersReducedMotion.matches ? 'auto' : 'smooth'
+            });
+        });
+    });
+
+    track.addEventListener('scroll', () => {
+        requestAnimationFrame(atualizar);
+    }, { passive: true });
+
+    window.addEventListener('resize', atualizar);
+    atualizar();
 }
 
 // ==================== TERMOS DE USO E POLÍTICA DE PRIVACIDADE ====================
