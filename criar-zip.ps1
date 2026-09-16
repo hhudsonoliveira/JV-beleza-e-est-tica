@@ -1,7 +1,11 @@
 # Script para criar ZIP do site
+# Tudo o que vai para a hospedagem. Nao inclua .git, .claude, os .md de
+# documentacao nem os proprios scripts: sao arquivos de trabalho.
 $arquivos = @(
     "index.html",
     "galeria.html",
+    "robots.txt",
+    "sitemap.xml",
     "css",
     "js",
     "images"

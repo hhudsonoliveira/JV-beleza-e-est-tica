@@ -15,9 +15,13 @@ def criar_zip():
     zip_filename = 'site-cliente.zip'
 
     # Arquivos e pastas a incluir
+    # Tudo o que vai para a hospedagem. Nao inclua .git, .claude, os .md de
+    # documentacao nem os proprios scripts: sao arquivos de trabalho.
     items = [
         'index.html',
         'galeria.html',
+        'robots.txt',
+        'sitemap.xml',
         'css',
         'js',
         'images'
@@ -44,7 +48,7 @@ def criar_zip():
                             zipf.write(file_path)
                             print(f'Adicionado: {file_path}')
 
-        print(f'\n✅ Arquivo {zip_filename} criado com sucesso!')
+        print(f'\nOK: arquivo {zip_filename} criado com sucesso!')
         print(f'\nConteúdo incluído:')
         for item in items:
             print(f'  - {item}')
@@ -52,7 +56,7 @@ def criar_zip():
         return True
 
     except Exception as e:
-        print(f'❌ Erro ao criar ZIP: {e}')
+        print(f'ERRO ao criar ZIP: {e}')
         return False
 
 if __name__ == '__main__':
