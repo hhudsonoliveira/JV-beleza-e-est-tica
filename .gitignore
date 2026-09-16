@@ -55,3 +55,6 @@ build/
 # images/*.png
 # !images/placeholder.svg
 .claude/
+
+# Pacotes gerados por criar-zip.ps1 / criar-zip.py
+*.zip
