@@ -209,7 +209,7 @@
     justify-content: center;
     cursor: pointer;
     z-index: 10002;
-    transition: all var(--transition-normal);
+    transition: background-color var(--transition-normal), transform var(--transition-normal);
     backdrop-filter: blur(10px);
 }
 
@@ -234,7 +234,7 @@
     justify-content: center;
     cursor: pointer;
     z-index: 10002;
-    transition: all var(--transition-normal);
+    transition: background-color var(--transition-normal), transform var(--transition-normal);
     backdrop-filter: blur(10px);
 }
 
@@ -442,4 +442,22 @@ body.lightbox-open {
 .lightbox-nav {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+}
+
+/* ==================== MOVIMENTO SÓ COM PONTEIRO REAL ==================== */
+@media (hover: none) {
+    .gallery-item:hover,
+    .gallery-item:hover video,
+    .lightbox-close:hover {
+        transform: none;
+    }
+
+    .lightbox-nav:hover {
+        transform: translateY(-50%);
+    }
+
+    /* Sem hover, o ícone de play precisa estar sempre visível */
+    .gallery-icon {
+        transform: scale(1);
+    }
 }

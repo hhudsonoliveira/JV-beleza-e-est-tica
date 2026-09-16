@@ -12,6 +12,8 @@
     <meta name="keywords" content="galeria salão beleza Salvador, fotos JV Beleza, vídeos estética Salvador">
     <meta name="author" content="JV Beleza & Estética">
     <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://jvsaudebelezaestetica.com/galeria.html">
+    <meta name="theme-color" content="#3f5b47">
 
     <!-- Open Graph Meta Tags -->
     <meta property="og:type" content="website">
@@ -20,6 +22,16 @@
     <meta property="og:url" content="https://jvsaudebelezaestetica.com/galeria">
     <meta property="og:site_name" content="JV Beleza & Estética">
     <meta property="og:locale" content="pt_BR">
+    <meta property="og:image" content="https://jvsaudebelezaestetica.com/images/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Galeria da JV Beleza & Estética em São Cristóvão, Salvador">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Galeria | JV Beleza & Estética">
+    <meta name="twitter:description" content="Veja nossa galeria de vídeos. Conheça nosso trabalho e espaço.">
+    <meta name="twitter:image" content="https://jvsaudebelezaestetica.com/images/og-image.jpg">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,9 +44,11 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="mask-icon" href="images/favicon.svg" color="#3f5b47">
 </head>
 <body>
+
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
     <!-- ==================== HEADER / NAVIGATION ==================== -->
     <header class="header" id="header">
@@ -69,28 +83,28 @@
                     </ul>
 
                     <!-- Close button for mobile -->
-                    <div class="nav-close" id="nav-close">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <button class="nav-close" id="nav-close" type="button" aria-label="Fechar menu">
+                        <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <line x1="18" y1="6" x2="6" y2="18"></line>
                             <line x1="6" y1="6" x2="18" y2="18"></line>
                         </svg>
-                    </div>
+                    </button>
                 </div>
 
                 <!-- Toggle button for mobile -->
-                <div class="nav-toggle" id="nav-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-menu">
+                    <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="3" y1="12" x2="21" y2="12"></line>
                         <line x1="3" y1="6" x2="21" y2="6"></line>
                         <line x1="3" y1="18" x2="21" y2="18"></line>
                     </svg>
-                </div>
+                </button>
             </nav>
         </div>
     </header>
 
     <!-- ==================== MAIN CONTENT ==================== -->
-    <main class="main">
+    <main class="main" id="conteudo" tabindex="-1">
 
         <!-- ==================== GALLERY HERO ==================== -->
         <section class="gallery-hero">
@@ -108,12 +122,13 @@
                     <!-- Video 1 -->
                     <div class="gallery-item" data-type="video" data-index="0">
                         <div class="gallery-item-wrapper">
-                            <video preload="metadata">
+                            <video muted loop playsinline preload="none"
+                                   poster="images/galeria/video1-poster.jpg">
                                 <source src="images/galeria/video1.mp4" type="video/mp4">
                             </video>
                             <div class="gallery-overlay">
                                 <div class="gallery-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="currentColor">
+                                    <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="currentColor">
                                         <polygon points="5 3 19 12 5 21 5 3"></polygon>
                                     </svg>
                                 </div>
@@ -124,12 +139,13 @@
                     <!-- Video 2 -->
                     <div class="gallery-item" data-type="video" data-index="1">
                         <div class="gallery-item-wrapper">
-                            <video preload="metadata">
+                            <video muted loop playsinline preload="none"
+                                   poster="images/galeria/video2-poster.jpg">
                                 <source src="images/galeria/video2.mp4" type="video/mp4">
                             </video>
                             <div class="gallery-overlay">
                                 <div class="gallery-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="currentColor">
+                                    <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="currentColor">
                                         <polygon points="5 3 19 12 5 21 5 3"></polygon>
                                     </svg>
                                 </div>
@@ -140,12 +156,13 @@
                     <!-- Video 3 -->
                     <div class="gallery-item" data-type="video" data-index="2">
                         <div class="gallery-item-wrapper">
-                            <video preload="metadata">
+                            <video muted loop playsinline preload="none"
+                                   poster="images/galeria/video3-poster.jpg">
                                 <source src="images/galeria/video3.mp4" type="video/mp4">
                             </video>
                             <div class="gallery-overlay">
                                 <div class="gallery-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="currentColor">
+                                    <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="currentColor">
                                         <polygon points="5 3 19 12 5 21 5 3"></polygon>
                                     </svg>
                                 </div>
@@ -156,12 +173,13 @@
                     <!-- Video 4 -->
                     <div class="gallery-item" data-type="video" data-index="3">
                         <div class="gallery-item-wrapper">
-                            <video preload="metadata">
+                            <video muted loop playsinline preload="none"
+                                   poster="images/galeria/video4-poster.jpg">
                                 <source src="images/galeria/video4.mp4" type="video/mp4">
                             </video>
                             <div class="gallery-overlay">
                                 <div class="gallery-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="currentColor">
+                                    <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="currentColor">
                                         <polygon points="5 3 19 12 5 21 5 3"></polygon>
                                     </svg>
                                 </div>
@@ -172,12 +190,13 @@
                     <!-- Video 5 -->
                     <div class="gallery-item" data-type="video" data-index="4">
                         <div class="gallery-item-wrapper">
-                            <video preload="metadata">
+                            <video muted loop playsinline preload="none"
+                                   poster="images/galeria/video5-poster.jpg">
                                 <source src="images/galeria/video5.mp4" type="video/mp4">
                             </video>
                             <div class="gallery-overlay">
                                 <div class="gallery-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="currentColor">
+                                    <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="currentColor">
                                         <polygon points="5 3 19 12 5 21 5 3"></polygon>
                                     </svg>
                                 </div>
@@ -193,10 +212,10 @@
         <section class="section section-cta">
             <div class="container">
                 <div class="cta-content fade-in">
-                    <h2 class="cta-title">Gostou do que viu?</h2>
-                    <p class="cta-subtitle">Agende seu horário e venha nos conhecer pessoalmente!</p>
+                    <h2 class="cta-title">Vamos cuidar de você</h2>
+                    <p class="cta-subtitle">Conte o que você precisa pelo WhatsApp e a gente encontra o melhor horário para você.</p>
                     <a href="https://wa.me/5571991702820?text=Olá!%20Gostaria%20de%20agendar%20um%20horário" class="btn btn-primary btn-large" target="_blank" rel="noopener noreferrer">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
                         </svg>
                         Agende Agora pelo WhatsApp
@@ -235,27 +254,27 @@
                     <h4 class="footer-heading">Contato</h4>
                     <ul class="footer-contact">
                         <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                                 <circle cx="12" cy="10" r="3"></circle>
                             </svg>
                             <span>Rua Santo Agostinho, nº 50<br>São Cristóvão - Salvador, BA</span>
                         </li>
                         <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                             </svg>
                             <a href="tel:71991702820">(71) 99170-2820</a>
                         </li>
                         <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                                 <polyline points="22,6 12,13 2,6"></polyline>
                             </svg>
                             <a href="mailto:oliveirajacirajv@gmail.com">oliveirajacirajv@gmail.com</a>
                         </li>
                         <li>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
@@ -283,7 +302,7 @@
                     <a href="#" id="open-terms-modal">Termos de Uso e Política de Privacidade</a>
                 </p>
                 <p class="footer-credits">
-                    Desenvolvido por <a href="https://hodevweb.com.br/" target="_blank" rel="noopener">HO DEVWEB</a> | <a href="https://instagram.com/hhudson.oliveira" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg> @hhudson.oliveira</a>
+                    Desenvolvido por <a href="https://hodevweb.com.br/" target="_blank" rel="noopener">HO DEVWEB</a> | <a href="https://instagram.com/hhudson.oliveira" target="_blank" rel="noopener"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg> @hhudson.oliveira</a>
                 </p>
             </div>
         </div>
@@ -319,20 +338,20 @@
     <!-- ==================== LIGHTBOX ==================== -->
     <div class="lightbox" id="lightbox">
         <button class="lightbox-close" id="lightbox-close" aria-label="Fechar">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
                 <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
         </button>
 
         <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Anterior">
-            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="15 18 9 12 15 6"></polyline>
             </svg>
         </button>
 
         <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Próximo">
-            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="9 18 15 12 9 6"></polyline>
             </svg>
         </button>
@@ -348,7 +367,7 @@
 
     <!-- ==================== FLOATING WHATSAPP BUTTON ==================== -->
     <a href="https://wa.me/5571991702820?text=Olá!%20Gostaria%20de%20agendar%20um%20horário" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contato via WhatsApp">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+        <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
         </svg>
     </a>

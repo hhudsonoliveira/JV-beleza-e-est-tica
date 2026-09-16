@@ -2,49 +2,57 @@
    JV BELEZA & ESTÉTICA - JAVASCRIPT
    ============================================ */
 
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
 // ==================== INITIALIZATION ====================
 document.addEventListener('DOMContentLoaded', function() {
     initPreloader();
     initMobileMenu();
     initSmoothScroll();
     initScrollEffects();
-    initIntersectionObserver();
     initRevealAnimations();
     initGalleryPreview();
     initTermsModal();
 });
 
-// ==================== GALLERY PREVIEW (HOMEPAGE) ====================
-function initGalleryPreview() {
-    const items = document.querySelectorAll('.gallery-preview-item video');
+// ==================== TRAVA DE ROLAGEM ====================
+// Preloader, menu e modal podem se sobrepor. Um contador evita que o primeiro
+// a fechar libere a rolagem enquanto outro ainda está aberto.
+let scrollLocks = 0;
 
-    items.forEach(video => {
-        const item = video.closest('.gallery-preview-item');
+function lockScroll() {
+    scrollLocks++;
+    document.body.style.overflow = 'hidden';
+}
 
-        item.addEventListener('mouseenter', () => video.play());
-        item.addEventListener('mouseleave', () => {
-            video.pause();
-            video.currentTime = 0;
-        });
-    });
+function unlockScroll() {
+    scrollLocks = Math.max(0, scrollLocks - 1);
+    if (scrollLocks === 0) document.body.style.overflow = '';
 }
 
 // ==================== PRELOADER ====================
 function initPreloader() {
     const preloader = document.getElementById('preloader');
-
     if (!preloader) return;
 
-    // Hide preloader after page loads
+    // Já viu a marca nesta sessão, ou pediu menos movimento: sem espera.
+    const jaVisto = sessionStorage.getItem('jv-preloader-visto') === '1';
+    if (jaVisto || prefersReducedMotion.matches) {
+        preloader.remove();
+        return;
+    }
+
+    lockScroll();
+
     window.addEventListener('load', function() {
+        // Só o suficiente para a marca não piscar na tela.
         setTimeout(function() {
             preloader.classList.add('hidden');
-            document.body.style.overflow = ''; // Allow scrolling
-        }, 1900);
+            unlockScroll();
+            sessionStorage.setItem('jv-preloader-visto', '1');
+            setTimeout(() => preloader.remove(), 400);
+        }, 200);
     });
-
-    // Prevent scrolling while preloader is visible
-    document.body.style.overflow = 'hidden';
 }
 
 // ==================== REVEAL ANIMATIONS ====================
@@ -52,24 +60,18 @@ function initRevealAnimations() {
     const revealElements = document.querySelectorAll('.reveal, .fade-in, .reveal-left, .reveal-right, .reveal-scale');
 
     if (!('IntersectionObserver' in window)) {
-        revealElements.forEach(el => {
-            el.classList.add('active');
-            el.classList.add('visible');
-        });
+        revealElements.forEach(el => el.classList.add('active', 'visible'));
         return;
     }
 
+    // O escalonamento vem das classes .stagger-N no CSS (transition-delay).
+    // Nada de atraso extra aqui: os dois se somavam e o resultado variava
+    // conforme quantos elementos entravam no mesmo lote do observer.
     const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-                // Add staggered delay for multiple elements
-                setTimeout(() => {
-                    entry.target.classList.add('active');
-                    entry.target.classList.add('visible');
-                }, index * 100);
-
-                revealObserver.unobserve(entry.target);
-            }
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('active', 'visible');
+            revealObserver.unobserve(entry.target);
         });
     }, {
         threshold: 0.1,
@@ -79,6 +81,26 @@ function initRevealAnimations() {
     revealElements.forEach(el => revealObserver.observe(el));
 }
 
+// ==================== GALLERY PREVIEW (HOMEPAGE) ====================
+function initGalleryPreview() {
+    // Com preload="none" o vídeo só é baixado quando há intenção de ver.
+    // Em telas de toque não há hover, então o poster é o que aparece.
+    document.querySelectorAll('.gallery-preview-item video').forEach(video => {
+        const item = video.closest('.gallery-preview-item');
+
+        item.addEventListener('mouseenter', () => {
+            const p = video.play();
+            // Sair antes de o vídeo carregar rejeita a promise; não é erro.
+            if (p) p.catch(() => {});
+        });
+
+        item.addEventListener('mouseleave', () => {
+            video.pause();
+            video.currentTime = 0;
+        });
+    });
+}
+
 // ==================== MOBILE MENU ====================
 function initMobileMenu() {
     const navToggle = document.getElementById('nav-toggle');
@@ -86,234 +108,106 @@ function initMobileMenu() {
     const navClose = document.getElementById('nav-close');
     const navLinks = document.querySelectorAll('.nav-link');
 
-    // Open menu
-    if (navToggle) {
-        navToggle.addEventListener('click', () => {
-            navMenu.classList.add('show');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
-        });
+    if (!navToggle || !navMenu) return;
+
+    function abrirMenu() {
+        navMenu.classList.add('show');
+        navToggle.setAttribute('aria-expanded', 'true');
+        lockScroll();
+        if (navClose) navClose.focus();
     }
 
-    // Close menu
-    if (navClose) {
-        navClose.addEventListener('click', () => {
-            navMenu.classList.remove('show');
-            document.body.style.overflow = ''; // Restore scrolling
-        });
+    function fecharMenu({ devolverFoco = false } = {}) {
+        if (!navMenu.classList.contains('show')) return;
+        navMenu.classList.remove('show');
+        navToggle.setAttribute('aria-expanded', 'false');
+        unlockScroll();
+        if (devolverFoco) navToggle.focus();
     }
 
-    // Close menu when clicking a nav link
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            navMenu.classList.remove('show');
-            document.body.style.overflow = '';
-        });
+    navToggle.addEventListener('click', abrirMenu);
+    if (navClose) navClose.addEventListener('click', () => fecharMenu({ devolverFoco: true }));
+
+    navLinks.forEach(link => link.addEventListener('click', () => fecharMenu()));
+
+    navMenu.addEventListener('click', (e) => {
+        if (e.target === navMenu) fecharMenu({ devolverFoco: true });
     });
 
-    // Close menu when clicking outside
-    navMenu.addEventListener('click', (e) => {
-        if (e.target === navMenu) {
-            navMenu.classList.remove('show');
-            document.body.style.overflow = '';
-        }
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') fecharMenu({ devolverFoco: true });
     });
 }
 
 // ==================== SMOOTH SCROLL ====================
 function initSmoothScroll() {
-    const navLinks = document.querySelectorAll('a[href^="#"]');
-
-    navLinks.forEach(link => {
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
         link.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
-
-            // Skip if href is just "#"
             if (href === '#') {
                 e.preventDefault();
                 return;
             }
 
-            const targetId = href.substring(1);
-            const targetSection = document.getElementById(targetId);
+            const alvo = document.getElementById(href.substring(1));
+            if (!alvo) return;
 
-            if (targetSection) {
-                e.preventDefault();
+            e.preventDefault();
 
-                // Get header height for offset
-                const header = document.querySelector('.header');
-                const headerHeight = header ? header.offsetHeight : 0;
+            const header = document.querySelector('.header');
+            const alturaHeader = header ? header.offsetHeight : 0;
+            // getBoundingClientRect funciona mesmo com pais posicionados;
+            // offsetTop mede a partir do offsetParent, não da página.
+            const destino = alvo.getBoundingClientRect().top + window.scrollY - alturaHeader;
 
-                // Calculate position
-                const targetPosition = targetSection.offsetTop - headerHeight;
-
-                // Smooth scroll
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
+            window.scrollTo({
+                top: destino,
+                behavior: prefersReducedMotion.matches ? 'auto' : 'smooth'
+            });
         });
     });
 }
 
 // ==================== SCROLL EFFECTS ====================
+// Um único listener, limitado a um quadro. Antes eram dois listeners de scroll
+// concorrentes, um deles sem throttle, medindo layout a cada evento.
 function initScrollEffects() {
     const header = document.querySelector('.header');
+    const secoes = Array.from(document.querySelectorAll('section[id]'));
+    const navLinks = Array.from(document.querySelectorAll('.nav-link'));
 
-    window.addEventListener('scroll', () => {
-        // Add/remove scrolled class to header
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
-}
+    let agendado = false;
 
-// ==================== INTERSECTION OBSERVER (FADE IN ANIMATIONS) ====================
-function initIntersectionObserver() {
-    const fadeElements = document.querySelectorAll('.fade-in');
+    function aoRolar() {
+        if (agendado) return;
+        agendado = true;
 
-    // Check if Intersection Observer is supported
-    if (!('IntersectionObserver' in window)) {
-        // Fallback: just show all elements
-        fadeElements.forEach(el => el.classList.add('visible'));
-        return;
+        requestAnimationFrame(() => {
+            agendado = false;
+            const y = window.scrollY;
+
+            if (header) header.classList.toggle('scrolled', y > 50);
+
+            if (!secoes.length) return;
+
+            const posicao = y + 100;
+            let atual = '';
+            for (const secao of secoes) {
+                const topo = secao.offsetTop;
+                if (posicao >= topo && posicao < topo + secao.offsetHeight) {
+                    atual = secao.id;
+                }
+            }
+
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === '#' + atual);
+            });
+        });
     }
 
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-                // Add a small delay for staggered animation
-                setTimeout(() => {
-                    entry.target.classList.add('visible');
-                }, index * 100);
-
-                // Stop observing this element
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    fadeElements.forEach(element => {
-        observer.observe(element);
-    });
+    window.addEventListener('scroll', aoRolar, { passive: true });
+    aoRolar();
 }
-
-// ==================== UTILITIES ====================
-
-// Debounce function for performance optimization
-function debounce(func, wait = 10, immediate = true) {
-    let timeout;
-    return function() {
-        const context = this;
-        const args = arguments;
-
-        const later = function() {
-            timeout = null;
-            if (!immediate) func.apply(context, args);
-        };
-
-        const callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-
-        if (callNow) func.apply(context, args);
-    };
-}
-
-// Check if element is in viewport
-function isInViewport(element) {
-    const rect = element.getBoundingClientRect();
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-}
-
-// ==================== ACTIVE NAV LINK ON SCROLL ====================
-// Track which section is currently in view and highlight the corresponding nav link
-window.addEventListener('scroll', debounce(() => {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    let current = '';
-    const scrollPosition = window.scrollY + 100; // Offset for better UX
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
-
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-            current = section.getAttribute('id');
-        }
-    });
-
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-        }
-    });
-}, 100));
-
-// ==================== PRELOAD CRITICAL CONTENT ====================
-// Ensure smooth initial load
-window.addEventListener('load', () => {
-    document.body.classList.add('loaded');
-
-    // Remove any loading overlays if present
-    const loader = document.querySelector('.loader');
-    if (loader) {
-        loader.style.opacity = '0';
-        setTimeout(() => {
-            loader.style.display = 'none';
-        }, 300);
-    }
-});
-
-// ==================== PERFORMANCE OPTIMIZATION ====================
-// Lazy load images if needed (already implemented via native loading="lazy")
-// But we can add a fallback for older browsers
-if ('loading' in HTMLImageElement.prototype) {
-    // Browser supports native lazy loading
-    console.log('Native lazy loading supported');
-} else {
-    // Fallback for browsers that don't support lazy loading
-    const images = document.querySelectorAll('img[loading="lazy"]');
-
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src || img.src;
-                img.classList.add('loaded');
-                observer.unobserve(img);
-            }
-        });
-    });
-
-    images.forEach(img => imageObserver.observe(img));
-}
-
-// ==================== ERROR HANDLING ====================
-// Global error handler for graceful degradation
-window.addEventListener('error', (e) => {
-    console.error('Error occurred:', e.error);
-    // Could send to analytics or logging service here
-});
-
-// ==================== CONSOLE MESSAGE ====================
-console.log('%c🌿 JV Beleza & Estética 🌿', 'color: #c9a24b; font-size: 20px; font-weight: bold;');
-console.log('%cWebsite desenvolvido com HTML, CSS e JavaScript puro', 'color: #3f5b47; font-size: 12px;');
-console.log('%cContato: (71) 99170-2820', 'color: #b4694a; font-size: 12px;');
 
 // ==================== TERMOS DE USO E POLÍTICA DE PRIVACIDADE ====================
 function initTermsModal() {
@@ -323,52 +217,76 @@ function initTermsModal() {
 
     if (!modal || !openLink || !closeBtn) return;
 
-    openLink.addEventListener('click', function(e) {
+    let focoAnterior = null;
+
+    function abrir(e) {
         e.preventDefault();
+        focoAnterior = document.activeElement;
         modal.classList.add('show');
-        document.body.style.overflow = 'hidden';
-    });
+        modal.setAttribute('aria-hidden', 'false');
+        lockScroll();
+        closeBtn.focus();
+    }
 
-    closeBtn.addEventListener('click', function() {
+    function fechar() {
+        if (!modal.classList.contains('show')) return;
         modal.classList.remove('show');
-        document.body.style.overflow = '';
+        modal.setAttribute('aria-hidden', 'true');
+        unlockScroll();
+        if (focoAnterior) focoAnterior.focus();
+    }
+
+    openLink.addEventListener('click', abrir);
+    closeBtn.addEventListener('click', fechar);
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) fechar();
     });
 
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            modal.classList.remove('show');
-            document.body.style.overflow = '';
+    document.addEventListener('keydown', (e) => {
+        if (!modal.classList.contains('show')) return;
+
+        if (e.key === 'Escape') {
+            fechar();
+            return;
         }
-    });
 
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.classList.contains('show')) {
-            modal.classList.remove('show');
-            document.body.style.overflow = '';
+        // Prende o foco dentro do modal enquanto ele estiver aberto.
+        if (e.key !== 'Tab') return;
+
+        const focaveis = modal.querySelectorAll('a[href], button, [tabindex]:not([tabindex="-1"])');
+        if (!focaveis.length) return;
+
+        const primeiro = focaveis[0];
+        const ultimo = focaveis[focaveis.length - 1];
+
+        if (e.shiftKey && document.activeElement === primeiro) {
+            e.preventDefault();
+            ultimo.focus();
+        } else if (!e.shiftKey && document.activeElement === ultimo) {
+            e.preventDefault();
+            primeiro.focus();
         }
     });
 }
 
-// ==================== EXPORT FUNCTIONS (if needed) ====================
-// These functions can be called from outside if needed
+// ==================== API PÚBLICA ====================
 window.JVBeauty = {
     scrollToSection: function(sectionId) {
-        const section = document.getElementById(sectionId);
-        if (section) {
-            const header = document.querySelector('.header');
-            const headerHeight = header ? header.offsetHeight : 0;
-            const targetPosition = section.offsetTop - headerHeight;
+        const secao = document.getElementById(sectionId);
+        if (!secao) return;
 
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-        }
+        const header = document.querySelector('.header');
+        const alturaHeader = header ? header.offsetHeight : 0;
+
+        window.scrollTo({
+            top: secao.getBoundingClientRect().top + window.scrollY - alturaHeader,
+            behavior: prefersReducedMotion.matches ? 'auto' : 'smooth'
+        });
     },
 
-    openWhatsApp: function(message = 'Olá! Gostaria de agendar um horário') {
-        const whatsappNumber = '5571991702820';
-        const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-        window.open(whatsappURL, '_blank');
+    openWhatsApp: function(message) {
+        const texto = message || 'Olá! Gostaria de agendar um horário';
+        window.open('https://wa.me/5571991702820?text=' + encodeURIComponent(texto), '_blank');
     }
 };

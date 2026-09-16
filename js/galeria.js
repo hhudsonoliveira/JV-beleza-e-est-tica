@@ -275,21 +275,10 @@ function preloadAdjacentMedia() {
     }
 }
 
-// ==================== VIDEO THUMBNAIL GENERATION ====================
-// Generate thumbnail for videos on load
-document.addEventListener('DOMContentLoaded', function() {
-    const videoElements = document.querySelectorAll('.gallery-item video');
-
-    videoElements.forEach(video => {
-        // Set time to 1 second to get a good thumbnail
-        video.currentTime = 1;
-
-        // Add poster attribute if needed
-        video.addEventListener('loadeddata', function() {
-            this.pause();
-        });
-    });
-});
+// ==================== MINIATURAS DOS VÍDEOS ====================
+// Cada vídeo tem um poster .jpg gerado a partir do próprio arquivo. Antes este
+// trecho buscava a miniatura definindo currentTime = 1, o que obrigava o
+// navegador a baixar os cinco vídeos só para montar a grade.
 
 // ==================== LAZY LOADING FOR GALLERY ITEMS ====================
 if ('IntersectionObserver' in window) {
@@ -381,7 +370,3 @@ window.GalleryLightbox = {
     getCurrentIndex: () => currentIndex,
     getTotalItems: () => galleryItems.length
 };
-
-// ==================== CONSOLE MESSAGE ====================
-console.log('%c📸 Galeria JV Beleza & Estética', 'color: #c9a24b; font-size: 16px; font-weight: bold;');
-console.log('%cLightbox com navegação completa ativa', 'color: #3f5b47; font-size: 12px;');

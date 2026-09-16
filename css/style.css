@@ -14,7 +14,7 @@
     align-items: center;
     justify-content: center;
     z-index: 10000;
-    transition: opacity 0.6s ease, visibility 0.6s ease;
+    transition: opacity 0.35s var(--ease-out), visibility 0.35s var(--ease-out);
 }
 
 .preloader.hidden {
@@ -37,12 +37,12 @@
 .preloader-sprig path {
     stroke-dasharray: 90;
     stroke-dashoffset: 90;
-    animation: draw-sprig 0.9s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: draw-sprig 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-.preloader-sprig path:nth-of-type(1) { animation-delay: 0.1s; }
-.preloader-sprig path:nth-of-type(2) { animation-delay: 0.4s; }
-.preloader-sprig path:nth-of-type(3) { animation-delay: 0.6s; }
+.preloader-sprig path:nth-of-type(1) { animation-delay: 0.05s; }
+.preloader-sprig path:nth-of-type(2) { animation-delay: 0.18s; }
+.preloader-sprig path:nth-of-type(3) { animation-delay: 0.28s; }
 
 @keyframes draw-sprig {
     to { stroke-dashoffset: 0; }
@@ -53,7 +53,7 @@
     fill: #c9a24b;
     transform-origin: 30px 6px;
     transform: scale(0.3);
-    animation: bud-bloom 0.4s ease 0.9s forwards;
+    animation: bud-bloom 0.3s var(--ease-out) 0.48s forwards;
 }
 
 .preloader-logo {
@@ -64,7 +64,7 @@
     letter-spacing: 0.02em;
     color: #c9a24b;
     margin-bottom: 0.5rem;
-    animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s forwards;
+    animation: fadeInUp 0.4s cubic-bezier(0.23, 1, 0.32, 1) 0.4s forwards;
     opacity: 0;
     text-shadow: 0 0 30px rgba(201, 162, 75, 0.4);
 }
@@ -77,7 +77,7 @@
     color: rgba(241, 237, 228, 0.75);
     letter-spacing: 3px;
     margin-bottom: 2rem;
-    animation: fadeInUp 0.8s ease 1.15s forwards;
+    animation: fadeInUp 0.35s cubic-bezier(0.23, 1, 0.32, 1) 0.55s forwards;
     opacity: 0;
 }
 
@@ -96,7 +96,7 @@
     width: 50%;
     height: 100%;
     background: linear-gradient(90deg, #a9812e, #c9a24b);
-    animation: loading 1.5s ease-in-out infinite;
+    animation: loading 0.9s linear infinite;
 }
 
 @keyframes pulse-logo {
@@ -121,6 +121,10 @@
     --primary-black: #1e1f19;
     --primary-brown: #3f5b47;
     --primary-gold: #a9812e;
+    /* Mesmo latão, escurecido para passar em AA como texto sobre fundo claro
+       (#a9812e dá 2,95:1 no papel; este dá 4,67:1). O tom claro continua
+       valendo para ícones, bordas e gradientes, que não são texto. */
+    --gold-ink: #816223;
     --secondary-peach: #b4694a;
     --accent-yellow: #c9a24b;
     --accent-green: #8a9b5e;
@@ -141,10 +145,12 @@
     --spacing-xl: 4rem;
     --spacing-xxl: 6rem;
 
-    /* Transitions */
-    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Motion — curvas fortes; entrada/saída usa ease-out, movimento na tela usa ease-in-out */
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+    --transition-fast: 0.15s var(--ease-out);
+    --transition-normal: 0.25s var(--ease-out);
+    --transition-slow: 0.4s var(--ease-out);
 
     /* Shadows */
     --shadow-sm: 0 2px 8px rgba(30, 31, 25, 0.08);
@@ -254,7 +260,11 @@ button {
     font-weight: 600;
     letter-spacing: 0.02em;
     border-radius: var(--radius-md);
-    transition: all var(--transition-normal);
+    transition: background-color var(--transition-normal),
+                color var(--transition-normal),
+                border-color var(--transition-normal),
+                box-shadow var(--transition-normal),
+                transform var(--transition-fast);
     cursor: pointer;
     text-align: center;
     border: 1px solid transparent;
@@ -288,6 +298,12 @@ button {
     font-size: 1.125rem;
 }
 
+/* Feedback de clique: o botão cede sob o dedo */
+.btn:active {
+    transform: scale(0.97);
+    transition-duration: 0.1s;
+}
+
 /* Fade In Animation */
 .fade-in {
     opacity: 0;
@@ -304,8 +320,8 @@ button {
 /* Reveal Animation Classes */
 .reveal {
     opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateY(16px);
+    transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
 }
 
 .reveal.active {
@@ -315,8 +331,8 @@ button {
 
 .reveal-left {
     opacity: 0;
-    transform: translateX(-50px);
-    transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateX(-20px);
+    transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
 }
 
 .reveal-left.active {
@@ -326,8 +342,8 @@ button {
 
 .reveal-right {
     opacity: 0;
-    transform: translateX(50px);
-    transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateX(20px);
+    transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
 }
 
 .reveal-right.active {
@@ -337,8 +353,8 @@ button {
 
 .reveal-scale {
     opacity: 0;
-    transform: scale(0.8);
-    transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: scale(0.96);
+    transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
 }
 
 .reveal-scale.active {
@@ -426,7 +442,7 @@ button {
 }
 
 .nav-link:hover {
-    color: var(--primary-gold);
+    color: var(--gold-ink);
 }
 
 .nav-link:hover::after {
@@ -512,7 +528,7 @@ button {
     letter-spacing: 0.16em;
     font-size: 0.75rem;
     font-weight: 600;
-    color: var(--primary-gold);
+    color: var(--gold-ink);
     margin-bottom: var(--spacing-sm);
     animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
@@ -605,7 +621,7 @@ button {
 }
 
 .hero-illustration svg {
-    animation: sway 6s ease-in-out 2.3s infinite;
+    animation: sway 9s ease-in-out 2.3s infinite;
 }
 
 @keyframes sway {
@@ -697,7 +713,7 @@ button {
 
 .about-card:hover {
     transform: translateY(-6px);
-    border-top-color: var(--primary-gold);
+    border-top-color: var(--gold-ink);
 }
 
 .card-icon {
@@ -792,7 +808,10 @@ button {
     padding: 1.35rem 0.5rem;
     border-bottom: 1px solid rgba(63, 91, 71, 0.15);
     overflow: hidden;
-    transition: padding-left var(--transition-normal);
+    text-decoration: none;
+    color: inherit;
+    /* padding anima layout a cada quadro; transform anda na GPU */
+    transition: transform var(--transition-normal);
 }
 
 .services-list .service-row:first-child {
@@ -815,7 +834,50 @@ button {
 }
 
 .service-row:hover {
-    padding-left: 1rem;
+    transform: translateX(10px);
+}
+
+/* O lado direito junta a etiqueta e a chamada de agendamento */
+.service-row-side {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    flex-shrink: 0;
+}
+
+.service-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--gold-ink);
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity var(--transition-normal), transform var(--transition-normal);
+}
+
+.service-row:hover .service-cta,
+.service-row:focus-visible .service-cta {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Sem hover, a chamada precisa estar sempre visível */
+@media (hover: none) {
+    .service-row:hover {
+        transform: none;
+    }
+
+    .service-cta {
+        opacity: 1;
+        transform: none;
+    }
 }
 
 .service-row-main {
@@ -847,7 +909,7 @@ button {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-weight: 600;
-    color: var(--primary-gold);
+    color: var(--gold-ink);
     white-space: nowrap;
     align-self: center;
 }
@@ -1061,7 +1123,7 @@ button {
 }
 
 .info-text a {
-    color: var(--primary-gold);
+    color: var(--gold-ink);
     transition: color var(--transition-fast);
 }
 
@@ -1129,7 +1191,7 @@ button {
     font-size: 1.125rem;
     font-weight: 600;
     margin-bottom: var(--spacing-md);
-    color: var(--primary-gold);
+    color: var(--accent-yellow);
 }
 
 .footer-links,
@@ -1147,7 +1209,7 @@ button {
 }
 
 .footer-links a:hover {
-    color: var(--primary-gold);
+    color: var(--accent-yellow);
     padding-left: var(--spacing-xs);
 }
 
@@ -1171,7 +1233,7 @@ button {
 }
 
 .footer-contact a:hover {
-    color: var(--primary-gold);
+    color: var(--accent-yellow);
 }
 
 .footer-schedule li {
@@ -1197,7 +1259,7 @@ button {
 }
 
 .footer-credits a {
-    color: var(--primary-gold);
+    color: var(--accent-yellow);
     transition: color var(--transition-fast);
 }
 
@@ -1218,7 +1280,7 @@ button {
 }
 
 .footer-legal a:hover {
-    color: var(--primary-gold);
+    color: var(--accent-yellow);
 }
 
 /* ==================== TERMOS DE USO E POLÍTICA DE PRIVACIDADE ==================== */
@@ -1277,7 +1339,7 @@ button {
 }
 
 .terms-modal-close:hover {
-    color: var(--primary-gold);
+    color: var(--gold-ink);
     transform: rotate(90deg);
 }
 
@@ -1369,8 +1431,7 @@ button {
     justify-content: center;
     box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
     z-index: 999;
-    transition: all var(--transition-normal);
-    animation: pulse-whatsapp 2s infinite;
+    transition: transform var(--transition-fast), box-shadow var(--transition-normal);
 }
 
 .whatsapp-float:hover {
@@ -1386,7 +1447,7 @@ button {
     height: 100%;
     border-radius: 50%;
     background: linear-gradient(135deg, #25D366, #128C7E);
-    animation: pulse-ring 2s infinite;
+    animation: pulse-ring 2.4s var(--ease-out) 3;
     z-index: -1;
 }
 
@@ -1403,7 +1464,7 @@ button {
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
+    transition: opacity var(--transition-normal), visibility var(--transition-normal);
     pointer-events: none;
 }
 
@@ -1639,12 +1700,30 @@ button {
 
 /* Smooth transitions for all interactive elements */
 @media (prefers-reduced-motion: reduce) {
+    /* Remove deslocamento e movimento contínuo, mas preserva as transições de
+       opacidade e cor que ainda comunicam estado. */
     *,
     *::before,
     *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+        animation: none !important;
+        transition-property: opacity, color, background-color, border-color !important;
+        transition-duration: 0.2s !important;
+    }
+
+    .reveal,
+    .reveal-left,
+    .reveal-right,
+    .reveal-scale,
+    .fade-in {
+        transform: none !important;
+    }
+
+    .preloader {
+        display: none;
+    }
+
+    html {
+        scroll-behavior: auto !important;
     }
 }
 
@@ -1696,4 +1775,134 @@ textarea:focus-visible {
     .section {
         page-break-inside: avoid;
     }
+}
+
+/* ==================== MOVIMENTO SÓ COM PONTEIRO REAL ==================== */
+/* No toque, um tap dispara :hover e o estado gruda até o próximo tap em
+   outro lugar. Estes efeitos são afordância de mouse — não de dedo. */
+@media (hover: none) {
+    .btn-primary:hover,
+    .scroll-down:hover svg,
+    .about-card:hover,
+    .benefit-card:hover,
+    .gallery-preview-item:hover,
+    .gallery-preview-item:hover .gallery-preview-overlay svg,
+    .terms-modal-close:hover,
+    .whatsapp-float:hover {
+        transform: none;
+    }
+}
+
+/* ==================== CONTROLES COMO <button> ==================== */
+/* Menu e fechar do modal viraram <button> para serem alcançáveis por teclado.
+   Zera a aparência nativa sem mexer no visual que já existia. */
+.nav-toggle,
+.nav-close,
+.terms-modal-close {
+    background: none;
+    border: 0;
+    padding: 0;
+    font-family: inherit;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* ==================== SKIP LINK ==================== */
+/* Primeiro tab da página: pula o menu inteiro e vai ao conteúdo. */
+.skip-link {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -110%);
+    z-index: 10001;
+    padding: 0.75rem 1.5rem;
+    background: var(--primary-brown);
+    color: var(--text-white);
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    text-decoration: none;
+    transition: transform var(--transition-normal);
+}
+
+.skip-link:focus {
+    transform: translate(-50%, 0);
+}
+
+#conteudo:focus {
+    outline: none;
+}
+
+/* ==================== DEPOIMENTOS ==================== */
+.section-depoimentos {
+    background: var(--bg-light);
+}
+
+.depoimentos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.depoimento {
+    position: relative;
+    margin: 0;
+    padding: var(--spacing-lg) var(--spacing-md) var(--spacing-md);
+    background: var(--text-white);
+    border: 1px solid rgba(63, 91, 71, 0.14);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Aspas tipográficas como marca d'água, na mesma serifada dos títulos */
+.depoimento::before {
+    content: '\201C';
+    position: absolute;
+    top: 0.35rem;
+    left: 1.25rem;
+    font-family: var(--font-heading);
+    font-size: 4.5rem;
+    line-height: 1;
+    color: var(--primary-gold);
+    opacity: 0.25;
+    pointer-events: none;
+}
+
+.depoimento-texto {
+    position: relative;
+    margin: 0 0 var(--spacing-md);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--text-gray);
+}
+
+.depoimento-autora {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding-top: var(--spacing-sm);
+    border-top: 1px solid rgba(63, 91, 71, 0.14);
+}
+
+.depoimento-nome {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--primary-brown);
+}
+
+.depoimento-servico {
+    font-size: 0.8125rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--gold-ink);
+}
+
+/* ==================== AÇÕES DO MAPA ==================== */
+.map-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--spacing-md);
 }
