@@ -559,6 +559,9 @@ button {
     animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
+/* Entrada com fill-mode both: o estado inicial invisível vem do próprio
+   keyframe, não de opacity: 0 fixo. Com "Reduzir movimento" as animações
+   são desligadas e o texto aparece direto, em vez de sumir. */
 .hero-title {
     font-family: var(--font-heading);
     font-size: clamp(2.6rem, 5vw, 4rem);
@@ -567,8 +570,7 @@ button {
     line-height: 1.15;
     color: var(--text-white);
     max-width: 14ch;
-    animation: fadeInUp 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s forwards;
-    opacity: 0;
+    animation: fadeInUp 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s both;
 }
 
 .hero-subtitle {
@@ -579,8 +581,7 @@ button {
     font-weight: 400;
     color: var(--text-white);
     max-width: 42ch;
-    animation: fadeInUp 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.22s forwards;
-    opacity: 0;
+    animation: fadeInUp 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.22s both;
 }
 
 .hero-chips {
@@ -588,8 +589,7 @@ button {
     gap: 0.75rem;
     flex-wrap: wrap;
     margin-bottom: var(--spacing-lg);
-    animation: fadeInUp 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.34s forwards;
-    opacity: 0;
+    animation: fadeInUp 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.34s both;
 }
 
 .hero-chip {
@@ -615,8 +615,7 @@ button {
     display: flex;
     gap: var(--spacing-md);
     flex-wrap: wrap;
-    animation: fadeInUp 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.46s forwards;
-    opacity: 0;
+    animation: fadeInUp 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.46s both;
 }
 
 /* O secundário é verde sobre claro no resto do site; sobre o vídeo, vira
@@ -644,8 +643,7 @@ button {
     bottom: var(--spacing-lg);
     left: var(--spacing-xl);
     z-index: 3;
-    animation: bounce 2s infinite, fadeInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s forwards;
-    opacity: 0;
+    animation: bounce 2s infinite, fadeInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s both;
 }
 
 .scroll-down a {
