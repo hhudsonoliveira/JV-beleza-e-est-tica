@@ -7,6 +7,7 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 // ==================== INITIALIZATION ====================
 document.addEventListener('DOMContentLoaded', function() {
     initPreloader();
+    initHeroVideo();
     initMobileMenu();
     initSmoothScroll();
     initScrollEffects();
@@ -54,6 +55,45 @@ function initPreloader() {
             setTimeout(() => preloader.remove(), 400);
         }, 200);
     });
+}
+
+// ==================== VÍDEO DE FUNDO DO HERO ====================
+// preload="none" e play() só depois do load: o vídeo não disputa banda com o
+// resto da página nem segura o preloader. Com pouco movimento ou economia de
+// dados, fica o poster. Fora da tela, pausa para poupar bateria.
+function initHeroVideo() {
+    const video = document.querySelector('.hero-video');
+    if (!video) return;
+
+    const conexao = navigator.connection;
+    if (conexao && conexao.saveData) return;
+
+    let visivel = true;
+
+    function atualizar() {
+        if (visivel && !prefersReducedMotion.matches) {
+            const p = video.play();
+            // Autoplay bloqueado (ex.: modo de economia do iOS): fica o poster.
+            if (p) p.catch(() => {});
+        } else {
+            video.pause();
+        }
+    }
+
+    function iniciar() {
+        if ('IntersectionObserver' in window) {
+            new IntersectionObserver(([entry]) => {
+                visivel = entry.isIntersecting;
+                atualizar();
+            }).observe(video);
+        } else {
+            atualizar();
+        }
+        prefersReducedMotion.addEventListener('change', atualizar);
+    }
+
+    if (document.readyState === 'complete') iniciar();
+    else window.addEventListener('load', iniciar, { once: true });
 }
 
 // ==================== REVEAL ANIMATIONS ====================

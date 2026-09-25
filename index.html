@@ -178,6 +178,15 @@
 
         <!-- ==================== HERO SECTION ==================== -->
         <section class="hero" id="home">
+            <!-- Vídeo de fundo: decorativo e sem áudio. Sem JS, com pouco movimento
+                 ou em economia de dados, fica só o poster. -->
+            <div class="hero-media" aria-hidden="true">
+                <video class="hero-video" muted loop playsinline preload="none"
+                       poster="images/galeria/video1-poster.jpg">
+                    <source src="images/galeria/video1.mp4" type="video/mp4">
+                </video>
+            </div>
+
             <div class="hero-grid">
                 <div class="hero-text">
                     <span class="hero-eyebrow">São Cristóvão · Salvador</span>
@@ -206,16 +215,6 @@
                         </a>
                         <a href="#servicos" class="btn btn-secondary">Ver todos os serviços</a>
                     </div>
-                </div>
-
-                <div class="hero-illustration">
-                    <svg aria-hidden="true" focusable="false" viewBox="0 0 200 260" fill="none" stroke="currentColor" stroke-width="2">
-                        <path class="branch" d="M100 240 C 100 170, 100 140, 100 30" stroke-linecap="round"/>
-                        <path class="branch" d="M100 80 C 100 80, 62 68, 42 86 C 62 102, 100 98, 100 118" stroke-linecap="round"/>
-                        <path class="branch" d="M100 118 C 100 118, 138 106, 158 124 C 138 140, 100 136, 100 156" stroke-linecap="round"/>
-                        <path class="branch" d="M100 156 C 100 156, 66 146, 48 166 C 66 182, 100 178, 100 198" stroke-linecap="round"/>
-                        <circle class="bud" cx="100" cy="26" r="8"/>
-                    </svg>
                 </div>
             </div>
 
@@ -297,101 +296,69 @@
                 <!-- Estética e Saúde -->
                 <div class="services-category reveal">
                     <h3 class="category-title">Estética e Saúde</h3>
-                    <div class="services-list">
-                        <a class="service-row" href="https://wa.me/5571991702820?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%3A%20Drenagem%20Linf%C3%A1tica%20Pr%C3%A9%20e%20P%C3%B3s-Operat%C3%B3ria" target="_blank" rel="noopener noreferrer"
+                    <div class="services-grid">
+                        <a class="service-card" href="https://wa.me/5571991702820?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%3A%20Drenagem%20Linf%C3%A1tica%20Pr%C3%A9%20e%20P%C3%B3s-Operat%C3%B3ria" target="_blank" rel="noopener noreferrer"
                            aria-label="Agendar Drenagem Linfática Pré e Pós-Operatória pelo WhatsApp">
-                            <div class="service-row-main">
-                                <h4 class="service-name">Drenagem Linfática Pré e Pós-Operatória</h4>
-                                <p class="service-desc">Técnica especializada para reduzir inchaços e acelerar a recuperação</p>
-                            </div>
-                            <span class="service-row-side">
-                                <span class="service-tag">Pré/Pós-op</span>
-                                <span class="service-cta">Agendar <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
-                            </span>
+                            <span class="service-tag">Pré/Pós-op</span>
+                            <h4 class="service-name">Drenagem Linfática Pré e Pós-Operatória</h4>
+                            <p class="service-desc">Técnica especializada para reduzir inchaços e acelerar a recuperação</p>
+                            <span class="service-cta">Agendar <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
                         </a>
 
-                        <a class="service-row" href="https://wa.me/5571991702820?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%3A%20Libera%C3%A7%C3%A3o%20Miofascial" target="_blank" rel="noopener noreferrer"
+                        <a class="service-card" href="https://wa.me/5571991702820?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%3A%20Libera%C3%A7%C3%A3o%20Miofascial" target="_blank" rel="noopener noreferrer"
                            aria-label="Agendar Liberação Miofascial pelo WhatsApp">
-                            <div class="service-row-main">
-                                <h4 class="service-name">Liberação Miofascial</h4>
-                                <p class="service-desc">Alívio de tensões musculares e melhora da mobilidade</p>
-                            </div>
-                            <span class="service-row-side">
-                                <span class="service-tag">Muscular</span>
-                                <span class="service-cta">Agendar <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
-                            </span>
+                            <span class="service-tag">Muscular</span>
+                            <h4 class="service-name">Liberação Miofascial</h4>
+                            <p class="service-desc">Alívio de tensões musculares e melhora da mobilidade</p>
+                            <span class="service-cta">Agendar <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
                         </a>
 
-                        <a class="service-row" href="https://wa.me/5571991702820?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%3A%20Ventosa%20Terapia" target="_blank" rel="noopener noreferrer"
+                        <a class="service-card" href="https://wa.me/5571991702820?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%3A%20Ventosa%20Terapia" target="_blank" rel="noopener noreferrer"
                            aria-label="Agendar Ventosa Terapia pelo WhatsApp">
-                            <div class="service-row-main">
-                                <h4 class="service-name">Ventosa Terapia</h4>
-                                <p class="service-desc">Tratamento milenar para dores e relaxamento muscular</p>
-                            </div>
-                            <span class="service-row-side">
-                                <span class="service-tag">Corpo</span>
-                                <span class="service-cta">Agendar <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
-                            </span>
+                            <span class="service-tag">Corpo</span>
+                            <h4 class="service-name">Ventosa Terapia</h4>
+                            <p class="service-desc">Tratamento milenar para dores e relaxamento muscular</p>
+                            <span class="service-cta">Agendar <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
                         </a>
 
-                        <a class="service-row" href="https://wa.me/5571991702820?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%3A%20Acupuntura%20Auricular" target="_blank" rel="noopener noreferrer"
+                        <a class="service-card" href="https://wa.me/5571991702820?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%3A%20Acupuntura%20Auricular" target="_blank" rel="noopener noreferrer"
                            aria-label="Agendar Acupuntura Auricular pelo WhatsApp">
-                            <div class="service-row-main">
-                                <h4 class="service-name">Acupuntura Auricular</h4>
-                                <p class="service-desc">Estímulo de pontos na orelha para mais relaxamento e equilíbrio no dia a dia</p>
-                            </div>
-                            <span class="service-row-side">
-                                <span class="service-tag">Bem-estar</span>
-                                <span class="service-cta">Agendar <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
-                            </span>
+                            <span class="service-tag">Bem-estar</span>
+                            <h4 class="service-name">Acupuntura Auricular</h4>
+                            <p class="service-desc">Estímulo de pontos na orelha para mais relaxamento e equilíbrio no dia a dia</p>
+                            <span class="service-cta">Agendar <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
                         </a>
 
-                        <a class="service-row" href="https://wa.me/5571991702820?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%3A%20Reflexologia%20Comportamental" target="_blank" rel="noopener noreferrer"
+                        <a class="service-card" href="https://wa.me/5571991702820?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%3A%20Reflexologia%20Comportamental" target="_blank" rel="noopener noreferrer"
                            aria-label="Agendar Reflexologia Comportamental pelo WhatsApp">
-                            <div class="service-row-main">
-                                <h4 class="service-name">Reflexologia Comportamental</h4>
-                                <p class="service-desc">Estímulo de pontos reflexos nos pés para aliviar tensões e renovar as energias</p>
-                            </div>
-                            <span class="service-row-side">
-                                <span class="service-tag">Corpo-mente</span>
-                                <span class="service-cta">Agendar <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
-                            </span>
+                            <span class="service-tag">Corpo-mente</span>
+                            <h4 class="service-name">Reflexologia Comportamental</h4>
+                            <p class="service-desc">Estímulo de pontos reflexos nos pés para aliviar tensões e renovar as energias</p>
+                            <span class="service-cta">Agendar <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
                         </a>
 
-                        <a class="service-row" href="https://wa.me/5571991702820?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%3A%20Limpeza%20de%20Pele%20com%20Alta%20Frequ%C3%AAncia" target="_blank" rel="noopener noreferrer"
+                        <a class="service-card" href="https://wa.me/5571991702820?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%3A%20Limpeza%20de%20Pele%20com%20Alta%20Frequ%C3%AAncia" target="_blank" rel="noopener noreferrer"
                            aria-label="Agendar Limpeza de Pele com Alta Frequência pelo WhatsApp">
-                            <div class="service-row-main">
-                                <h4 class="service-name">Limpeza de Pele com Alta Frequência</h4>
-                                <p class="service-desc">Remove impurezas e ativa a renovação celular para uma pele mais limpa e radiante</p>
-                            </div>
-                            <span class="service-row-side">
-                                <span class="service-tag">Pele</span>
-                                <span class="service-cta">Agendar <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
-                            </span>
+                            <span class="service-tag">Pele</span>
+                            <h4 class="service-name">Limpeza de Pele com Alta Frequência</h4>
+                            <p class="service-desc">Remove impurezas e ativa a renovação celular para uma pele mais limpa e radiante</p>
+                            <span class="service-cta">Agendar <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
                         </a>
 
-                        <a class="service-row" href="https://wa.me/5571991702820?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%3A%20Massagem%20Relaxante" target="_blank" rel="noopener noreferrer"
+                        <a class="service-card" href="https://wa.me/5571991702820?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%3A%20Massagem%20Relaxante" target="_blank" rel="noopener noreferrer"
                            aria-label="Agendar Massagem Relaxante pelo WhatsApp">
-                            <div class="service-row-main">
-                                <h4 class="service-name">Massagem Relaxante</h4>
-                                <p class="service-desc">Uma hora de sossego para o corpo e para a cabeça</p>
-                            </div>
-                            <span class="service-row-side">
-                                <span class="service-tag">Relaxamento</span>
-                                <span class="service-cta">Agendar <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
-                            </span>
+                            <span class="service-tag">Relaxamento</span>
+                            <h4 class="service-name">Massagem Relaxante</h4>
+                            <p class="service-desc">Uma hora de sossego para o corpo e para a cabeça</p>
+                            <span class="service-cta">Agendar <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
                         </a>
 
-                        <a class="service-row" href="https://wa.me/5571991702820?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%3A%20Massagem%20Modeladora" target="_blank" rel="noopener noreferrer"
+                        <a class="service-card" href="https://wa.me/5571991702820?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%3A%20Massagem%20Modeladora" target="_blank" rel="noopener noreferrer"
                            aria-label="Agendar Massagem Modeladora pelo WhatsApp">
-                            <div class="service-row-main">
-                                <h4 class="service-name">Massagem Modeladora</h4>
-                                <p class="service-desc">Técnica que reduz medidas, combate a celulite e modela o corpo</p>
-                            </div>
-                            <span class="service-row-side">
-                                <span class="service-tag">Modelagem</span>
-                                <span class="service-cta">Agendar <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
-                            </span>
+                            <span class="service-tag">Modelagem</span>
+                            <h4 class="service-name">Massagem Modeladora</h4>
+                            <p class="service-desc">Técnica que reduz medidas, combate a celulite e modela o corpo</p>
+                            <span class="service-cta">Agendar <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
                         </a>
                     </div>
                 </div>
@@ -399,89 +366,61 @@
                 <!-- Beleza -->
                 <div class="services-category services-category--beleza reveal">
                     <h3 class="category-title">Beleza</h3>
-                    <div class="services-list">
-                        <a class="service-row" href="https://wa.me/5571991702820?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%3A%20Escova%20Progressiva" target="_blank" rel="noopener noreferrer"
+                    <div class="services-grid">
+                        <a class="service-card" href="https://wa.me/5571991702820?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%3A%20Escova%20Progressiva" target="_blank" rel="noopener noreferrer"
                            aria-label="Agendar Escova Progressiva pelo WhatsApp">
-                            <div class="service-row-main">
-                                <h4 class="service-name">Escova Progressiva</h4>
-                                <p class="service-desc">Cabelos lisos, alinhados e com brilho duradouro</p>
-                            </div>
-                            <span class="service-row-side">
-                                <span class="service-tag">Cabelo</span>
-                                <span class="service-cta">Agendar <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
-                            </span>
+                            <span class="service-tag">Cabelo</span>
+                            <h4 class="service-name">Escova Progressiva</h4>
+                            <p class="service-desc">Cabelos lisos, alinhados e com brilho duradouro</p>
+                            <span class="service-cta">Agendar <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
                         </a>
 
-                        <a class="service-row" href="https://wa.me/5571991702820?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%3A%20Botox%20Capilar" target="_blank" rel="noopener noreferrer"
+                        <a class="service-card" href="https://wa.me/5571991702820?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%3A%20Botox%20Capilar" target="_blank" rel="noopener noreferrer"
                            aria-label="Agendar Botox Capilar pelo WhatsApp">
-                            <div class="service-row-main">
-                                <h4 class="service-name">Botox Capilar</h4>
-                                <p class="service-desc">Tratamento intensivo que recupera e rejuvenesce os fios</p>
-                            </div>
-                            <span class="service-row-side">
-                                <span class="service-tag">Cabelo</span>
-                                <span class="service-cta">Agendar <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
-                            </span>
+                            <span class="service-tag">Cabelo</span>
+                            <h4 class="service-name">Botox Capilar</h4>
+                            <p class="service-desc">Tratamento intensivo que recupera e rejuvenesce os fios</p>
+                            <span class="service-cta">Agendar <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
                         </a>
 
-                        <a class="service-row" href="https://wa.me/5571991702820?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%3A%20Tratamento%20Capilar" target="_blank" rel="noopener noreferrer"
+                        <a class="service-card" href="https://wa.me/5571991702820?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%3A%20Tratamento%20Capilar" target="_blank" rel="noopener noreferrer"
                            aria-label="Agendar Tratamento Capilar pelo WhatsApp">
-                            <div class="service-row-main">
-                                <h4 class="service-name">Tratamento Capilar</h4>
-                                <p class="service-desc">Hidratação profunda e nutrição para cabelos saudáveis</p>
-                            </div>
-                            <span class="service-row-side">
-                                <span class="service-tag">Cabelo</span>
-                                <span class="service-cta">Agendar <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
-                            </span>
+                            <span class="service-tag">Cabelo</span>
+                            <h4 class="service-name">Tratamento Capilar</h4>
+                            <p class="service-desc">Hidratação profunda e nutrição para cabelos saudáveis</p>
+                            <span class="service-cta">Agendar <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
                         </a>
 
-                        <a class="service-row" href="https://wa.me/5571991702820?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%3A%20Reconstru%C3%A7%C3%A3o%20Capilar" target="_blank" rel="noopener noreferrer"
+                        <a class="service-card" href="https://wa.me/5571991702820?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%3A%20Reconstru%C3%A7%C3%A3o%20Capilar" target="_blank" rel="noopener noreferrer"
                            aria-label="Agendar Reconstrução Capilar pelo WhatsApp">
-                            <div class="service-row-main">
-                                <h4 class="service-name">Reconstrução Capilar</h4>
-                                <p class="service-desc">Devolve estrutura e resistência a cabelos danificados</p>
-                            </div>
-                            <span class="service-row-side">
-                                <span class="service-tag">Cabelo</span>
-                                <span class="service-cta">Agendar <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
-                            </span>
+                            <span class="service-tag">Cabelo</span>
+                            <h4 class="service-name">Reconstrução Capilar</h4>
+                            <p class="service-desc">Devolve estrutura e resistência a cabelos danificados</p>
+                            <span class="service-cta">Agendar <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
                         </a>
 
-                        <a class="service-row" href="https://wa.me/5571991702820?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%3A%20Mechas%20Luminosas" target="_blank" rel="noopener noreferrer"
+                        <a class="service-card" href="https://wa.me/5571991702820?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%3A%20Mechas%20Luminosas" target="_blank" rel="noopener noreferrer"
                            aria-label="Agendar Mechas Luminosas pelo WhatsApp">
-                            <div class="service-row-main">
-                                <h4 class="service-name">Mechas Luminosas</h4>
-                                <p class="service-desc">Iluminação natural e moderna para destacar sua beleza</p>
-                            </div>
-                            <span class="service-row-side">
-                                <span class="service-tag">Coloração</span>
-                                <span class="service-cta">Agendar <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
-                            </span>
+                            <span class="service-tag">Coloração</span>
+                            <h4 class="service-name">Mechas Luminosas</h4>
+                            <p class="service-desc">Iluminação natural e moderna para destacar sua beleza</p>
+                            <span class="service-cta">Agendar <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
                         </a>
 
-                        <a class="service-row" href="https://wa.me/5571991702820?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%3A%20Corte%20Ideal" target="_blank" rel="noopener noreferrer"
+                        <a class="service-card" href="https://wa.me/5571991702820?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%3A%20Corte%20Ideal" target="_blank" rel="noopener noreferrer"
                            aria-label="Agendar Corte Ideal pelo WhatsApp">
-                            <div class="service-row-main">
-                                <h4 class="service-name">Corte Ideal</h4>
-                                <p class="service-desc">Corte pensado para o seu rosto, seu cabelo e a sua rotina</p>
-                            </div>
-                            <span class="service-row-side">
-                                <span class="service-tag">Corte</span>
-                                <span class="service-cta">Agendar <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
-                            </span>
+                            <span class="service-tag">Corte</span>
+                            <h4 class="service-name">Corte Ideal</h4>
+                            <p class="service-desc">Corte pensado para o seu rosto, seu cabelo e a sua rotina</p>
+                            <span class="service-cta">Agendar <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
                         </a>
 
-                        <a class="service-row" href="https://wa.me/5571991702820?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%3A%20Permanente" target="_blank" rel="noopener noreferrer"
+                        <a class="service-card" href="https://wa.me/5571991702820?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20gostaria%20de%20agendar%3A%20Permanente" target="_blank" rel="noopener noreferrer"
                            aria-label="Agendar Permanente pelo WhatsApp">
-                            <div class="service-row-main">
-                                <h4 class="service-name">Permanente</h4>
-                                <p class="service-desc">Cachos e ondas definidas com durabilidade</p>
-                            </div>
-                            <span class="service-row-side">
-                                <span class="service-tag">Cachos</span>
-                                <span class="service-cta">Agendar <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
-                            </span>
+                            <span class="service-tag">Cachos</span>
+                            <h4 class="service-name">Permanente</h4>
+                            <p class="service-desc">Cachos e ondas definidas com durabilidade</p>
+                            <span class="service-cta">Agendar <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
                         </a>
                     </div>
                 </div>
@@ -619,7 +558,6 @@
                         </button>
                     </div>
                 </div>
-                </div>
             </div>
         </section>
         -->
@@ -672,7 +610,8 @@
 
                     <a href="galeria.html" class="gallery-preview-item reveal stagger-4" aria-label="Ver galeria completa">
                         <video muted loop playsinline preload="none"
-                               poster="images/galeria/video4-poster.jpg">
+                               poster="images/galeria/video4-poster.jpg"
+                               style="--foco: 50% 20%">
                             <source src="images/galeria/video4.mp4" type="video/mp4">
                         </video>
                         <span class="gallery-preview-overlay">
